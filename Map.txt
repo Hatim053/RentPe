@@ -1,0 +1,186 @@
+Models : 
+ 
+user model : 
+userid : _id,
+username : {
+    type : String,
+    required : true,
+    unique : true,
+    lowercase : true,
+},
+fullName : {
+    type : String,
+    default : 'user'
+},
+password : {
+    type : String,
+    required : true,
+},
+accountType : {
+    type : String,
+    enum : ['seller' , 'user'],
+    default : 'user'
+}
+
+
+
+seller model : 
+sellerId : _id,
+username : {
+    type : String,
+    required : true,
+    unique : true,
+    lowercase : true,
+},
+fullName : {
+    type : String,
+    required : true,
+    unique : true,
+},
+password : {
+    type : String,
+    required : true,
+},
+location : String, // where seller lives
+panCard : { // payment will only be made if pancard is attached
+    type : String,
+    default : 'null',
+},
+photo : {
+    type : String,
+},
+Bussiness-type : {
+type : [] // seller can deal or may have mutliple niches
+enum : ['furniture' , 'utensils'  'places' , 'electronics' , 'lighting' , 'catering' , 'tent and decoration'],
+required : true,
+},
+contact-Number : {
+    type : Number,
+    required : true,
+},
+subscription :   { // if subscription is valid then true and if expired the false
+type : Boolean,
+default : false,
+},
+paymentHistory : { // array refering to payment model so that we can track the payment history and last payment also 
+type : [],
+},
+accountType : {
+    type : String,
+    enum : ['seller' , 'user'],
+    default : 'user'
+}
+
+
+
+advertisement model : 
+  sellerId : { // so that user can directly chat with the seller
+    type : mongoose.Schema.Types.Object.Id,
+    ref : 'Seller',
+  } 
+  service-type : {
+    type : String,
+    enum : ['furniture' , 'utensils'  'places' , 'electronics' , 'lighting' , 'catering' , 'tent and decoration'],
+    required : true,
+},
+  title : {
+    type : String,
+    required : true,
+  }
+  description : {
+    type : String,
+  }
+  city  : {// where service will be provided
+  type : String,
+  required : true,
+  },
+  address : {
+    type : String,
+    required : true,
+  },
+  price : {
+    type : Number,
+    required : true,
+},
+ homeDelivery : {
+  type : boolean,
+  required : true,
+ } 
+  photos : {
+    type : [], // containing urls
+    required : true,
+},
+  contact-Number :{
+    type : Number,
+    required : true,
+}
+
+
+
+payment model : 
+sellerid : {
+    type : mongoose.Schema.Types.ObjectID,
+    ref : 'Seller',
+    required : true,
+}
+status : {
+    type : String,
+    required : true,
+    enum : ['success' , 'pending' , 'failed']
+},
+mode : {
+    type : String,
+    enum : ['UPI],
+    required : true,
+}
+amount : {
+    type : Number,
+    required : true,
+},
+currency : {
+    type : String,
+    enum : ['INR'],
+    default : 'INR'
+},
+paymentId : { // provided by the external / third party (phone/raozrpay/paytm)
+    type : String, 
+    default : null,
+}
+transactionDate : {
+    type : Date,
+    default : Date.now
+}
+
+
+Features : 
+Backend Tasks : 
+1) models setup - 21-10-25
+2) utilities setup - 21-10-25 
+3) multer  and cloudinary setup 21-10-25 
+4) external middleware's setup 21-10-25
+5) Authorization 22-10-25
+6) Authentication 22-10-25
+7) Otp Based Login And Signup 23-10-25
+8) Creation Of Advertisement Schema 24-10-25
+9) advertisement live (how they will go live and how they will be display) 24-10-25
+10) User Selecting Advertisement and Connecting With Seller 25-10-25
+11) Socket Io 25-10-25
+12) payment / upi integration 26-10-25
+13) subscription expiration and validation 27-5-25
+
+DataBase Tasks : 
+1) mongodb setup and connection 21-10-25
+
+Frontend Tasks : 
+1) Desing login and Signup 28-10-25
+2) Desgin Advertisement Feed 28-10-25
+3) Desgin Home Page 29-10-25
+4) Desgin Advertisement Creating Page 29-10-25 
+5) Desgin Payment Gateways 30-10-25
+6) Desgin Chats Features 01-11-25
+7) Design Advertisement History And Payment History 02-11-25
+8) Desgin Profile Settings Page 02-11-25
+
+
+
+
