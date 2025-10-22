@@ -16,10 +16,16 @@ password : {
     type : String,
     required : true,
 },
+profileImage : { // url
+    type : String,
+},
 accountType : {
     type : String,
     enum : ['seller' , 'user'],
     default : 'user'
+},
+refreshToken : {
+    type : String,
 }
 
 
