@@ -41,23 +41,25 @@ username : {
 fullName : {
     type : String,
     required : true,
-    unique : true,
 },
 password : {
     type : String,
     required : true,
 },
-location : String, // where seller lives
+location : { // where seller lives
+type : String,
+required : true,
+}, 
 panCard : { // payment will only be made if pancard is attached
     type : String,
-    default : 'null',
+    default : null,
 },
-photo : {
+profileImage : {
     type : String,
 },
 Bussiness-type : {
 type : [] // seller can deal or may have mutliple niches
-enum : ['furniture' , 'utensils'  'places' , 'electronics' , 'lighting' , 'catering' , 'tent and decoration'],
+enum : ['furniture' , 'utensils'  'properties' , 'electronics' , 'lighting' , 'catering' , 'tent and decoration'],
 required : true,
 },
 contact-Number : {
@@ -74,7 +76,7 @@ type : [],
 accountType : {
     type : String,
     enum : ['seller' , 'user'],
-    default : 'user'
+    default : 'seller',
 }
 
 
@@ -86,7 +88,7 @@ advertisement model :
   } 
   service-type : {
     type : String,
-    enum : ['furniture' , 'utensils'  'places' , 'electronics' , 'lighting' , 'catering' , 'tent and decoration'],
+    enum : ['furniture' , 'utensils'  'properties' , 'electronics' , 'lighting' , 'catering' , 'tent and decoration'],
     required : true,
 },
   title : {
@@ -102,7 +104,6 @@ advertisement model :
   },
   address : {
     type : String,
-    required : true,
   },
   price : {
     type : Number,
@@ -112,7 +113,7 @@ advertisement model :
   type : boolean,
   required : true,
  } 
-  photos : {
+  images : {
     type : [], // containing urls
     required : true,
 },
@@ -160,12 +161,12 @@ transactionDate : {
 
 Features : 
 Backend Tasks : 
-1) models setup - 21-10-25
-2) utilities setup - 21-10-25 
-3) multer  and cloudinary setup 21-10-25 
-4) external middleware's setup 21-10-25
-5) Authorization 22-10-25
-6) Authentication 22-10-25
+1) models setup - 21-10-25 ✅
+2) utilities setup - 21-10-25 ✅
+3) multer  and cloudinary setup 21-10-25 ✅
+4) external middleware's setup 21-10-25 ✅
+5) Authorization 22-10-25 ✅
+6) Authentication 22-10-25 ✅
 7) Otp Based Login And Signup 23-10-25
 8) Creation Of Advertisement Schema 24-10-25
 9) advertisement live (how they will go live and how they will be display) 24-10-25
@@ -175,7 +176,7 @@ Backend Tasks :
 13) subscription expiration and validation 27-5-25
 
 DataBase Tasks : 
-1) mongodb setup and connection 21-10-25
+1) mongodb setup and connection 21-10-25 ✅
 
 Frontend Tasks : 
 1) Desing login and Signup 28-10-25
