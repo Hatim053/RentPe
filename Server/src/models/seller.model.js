@@ -1,0 +1,103 @@
+import mongoose from "mongoose"
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+
+const sellerSchema = new mongoose.Schema({
+    username : {
+        type : String,
+        required : true,
+        unique : true,
+        lowercase : true,
+    },
+    email : {
+        type : String,
+        required : true,
+        lowercase : true,
+        unique : true,
+    },
+    fullName : {
+        type : String,
+        required : true,
+    },
+    password : {
+        type : String,
+        required : true,
+    },
+    mobileNo : {
+        type : Number,
+        required : true,
+    },
+    location : {
+        type : String,
+        required : true,
+    },
+    panCard : {
+        type : String,
+        default : null
+    },
+    profileImage : {
+        type : String,
+    },
+    businessType : [{
+  type: String,
+  enum: ['furniture' , 'utensils' , 'properties' , 'electronics' , 'lighting' , 'catering' , 'tent and decoration'],
+  required : true,
+}],
+    lastPayment : {
+        type : Date,
+        default : null,
+    },
+    accountType : {
+        type : String,
+        enum : ['seller' , 'user'],
+        default : 'seller',
+    },
+    otp : { // everytime when we send otp to user we will store that otp here for that particular time so that we can match the otp with the otp that user enters after matching we will again make it null
+    type : Number,
+    default : null,
+    },
+    freeTrails : {
+        type : Number,
+        default : 3,
+    },
+    refreshToken : {
+        type : String,
+    }
+
+} , {timestamps : true})
+
+
+sellerSchema.pre('save' , async function(next) {
+if(! this.isModified('password')) next()
+this.password = await bcrypt.hash(this.password , 10)
+next()
+})
+
+
+sellerSchema.method.isPasswordCorrect = async function(password) {
+    return await bcrypt.compare(password , this.password)
+}
+
+
+sellerSchema.method.generateAccessToken = function() {
+    jwt.sign({
+        _id : this._id,
+        username : this.username,
+    },
+    process.env.ACCESSTOKENSECRET,
+    {expiresIn : process.env.ACCESSTOKENEXPIRY})
+}
+
+sellerSchema.method.generateRefreshToken = function() {
+    jwt.sign({
+    _id : this._id,
+    },
+    process.env.REFRESHTOKENSECRET,
+    {
+    expiresIn : process.env.REFRESHTOKENEXPIRY
+    })
+}
+
+const Seller = mongoose.model('Seller' , sellerSchema)
+
+export default Seller

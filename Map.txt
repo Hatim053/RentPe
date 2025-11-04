@@ -168,26 +168,33 @@ Backend Tasks :
 5) Authorization 22-10-25 ✅
 6) Authentication 22-10-25 ✅
 7) Otp Based Login And Signup 23-10-25
-8) Creation Of Advertisement Schema 24-10-25
-9) advertisement live (how they will go live and how they will be display) 24-10-25
+8) Creation Of Advertisement Schema 24-10-25 ✅
+9) advertisement live (how they will go live and how they will be display) 24-10-25 ✅
 10) User Selecting Advertisement and Connecting With Seller 25-10-25
 11) Socket Io 25-10-25
-12) payment / upi integration 26-10-25
-13) subscription expiration and validation 27-5-25
+12) payment / upi integration 26-10-25 
+13) subscription expiration and validation 27-5-25 ✅
 
 DataBase Tasks : 
 1) mongodb setup and connection 21-10-25 ✅
 
 Frontend Tasks : 
-1) Desing login and Signup 28-10-25
-2) Desgin Advertisement Feed 28-10-25
-3) Desgin Home Page 29-10-25
+1) Desing login and Signup 28-10-25    Ref Link : https://codepen.io/mr-zouraiz123/pen/ZEeKMVP
+2) Desgin Advertisement Feed 28-10-25 Ref Link : https://www.olx.in/en-in/post/attributes
+3) Desgin Home Page 29-10-25 
 4) Desgin Advertisement Creating Page 29-10-25 
-5) Desgin Payment Gateways 30-10-25
+5) Desgin Payment Gateways 30-10-25 Ref Link : https://www.pinterest.com/pin/web-design-web-ui-design-website-design--31947478603138961/
 6) Desgin Chats Features 01-11-25
 7) Design Advertisement History And Payment History 02-11-25
 8) Desgin Profile Settings Page 02-11-25
 
 
 
+
+
+
+TEST_API_KEY : rzp_test_RagY9IhjVEIMio
+TEST_API_SECRET : uwtLqGU1WIr5z6QuT3FrsCDn
+
+order_RaglqKn086GkxR
 
