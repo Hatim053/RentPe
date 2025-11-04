@@ -48,7 +48,7 @@ if(digest != razorpay_signature) status = 'pending'
 else status = 'success'
 
 const payment = await Payment.create({
-  // sellerId : req.seller._id,
+  sellerId : req.seller._id,
   status,
   amount : amount / 100,
   paymentId : razorpay_payment_id,
@@ -74,7 +74,7 @@ return res
 const handleFailedTransaction = asyncHandler(async (req , res) => {
   const { razorpay_payment_id , amount } = req.body
   const payment = await Payment.create({
-  // sellerId : req.seller._id,
+  sellerId : req.seller._id,
   status  : 'failed',
   amount : amount / 100,
   paymentId : razorpay_payment_id,
@@ -89,7 +89,7 @@ return res
 .status(201)
 .json({
   message : 'failed transaction recorded in the data base',
-}) // replace this with the page showing transaction details
+}) 
 
 })
 

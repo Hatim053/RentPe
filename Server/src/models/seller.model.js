@@ -52,13 +52,13 @@ const sellerSchema = new mongoose.Schema({
         enum : ['seller' , 'user'],
         default : 'seller',
     },
-    otp : { // everytime when we send otp to user we will store that otp here for that particular time so that we can match the otp with the otp that user enters after matching we will again make it null
-    type : Number,
-    default : null,
-    },
     freeTrails : {
         type : Number,
         default : 3,
+    },
+    verified : {
+        type : Boolean,
+        default : false,
     },
     refreshToken : {
         type : String,

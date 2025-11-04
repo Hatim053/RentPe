@@ -1,7 +1,7 @@
 import { Router } from "express"
 import { handleUserLogin , handleUserSignup , uploadProfileImage} from "../controllers/user.controller.js"
 import upload from '../middlewares/multer.js'
-import { authenticateUser , authenticateSeller } from "../middlewares/authentication.js"
+import { authenticateUser } from "../middlewares/authentication.js"
 
 const userRoutes = Router()
 
