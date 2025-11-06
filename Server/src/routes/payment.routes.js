@@ -13,7 +13,10 @@ const paymentRoutes = Router();
 paymentRoutes.post('/create-order' , handleGenerateOrderId)
 paymentRoutes.post('/validate-transaction' , handleValidateAndSaveTransaction)
 paymentRoutes.post('/failed-transaction' , handleFailedTransaction)
-
+// callback helper route for razorpay checkout redirection
+paymentRoutes.post("/payment/payment-success", (req, res) => {
+  res.redirect("http://localhost:5173/payment-success");
+})
 
 
 export default paymentRoutes
