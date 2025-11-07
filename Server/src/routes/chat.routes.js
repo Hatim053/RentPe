@@ -1,11 +1,16 @@
 import { Router } from "express"
-import { handleLoadChats , handleLoadChatList } from '../controllers/chat.controller.js'
+import { handleLoadChats ,
+         handleLoadSellerChatList , 
+         handleLoadUserChatList } from '../controllers/chat.controller.js'
+
+import { authenticateSeller , authenticateUser } from '../middlewares/authentication.js'         
 
 const chatRoutes = Router()
 
 
-chatRoutes.get('/chats' , handleLoadChatList)
-chatRoutes.get('/chats/messages' , handleLoadChats)
+chatRoutes.get('/chats/:userId' , authenticateUser , handleLoadUserChatList)
+chatRoutes.get('/chats/:sellerId' , authenticateSeller , handleLoadSellerChatList)
+chatRoutes.get('/messages/:chatId' , handleLoadChats)
 
 
 
