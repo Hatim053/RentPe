@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import './App.css'
 import  socket  from './socket.js'
 import { useEffect } from 'react'
-
+import { Outlet } from 'react-router-dom'
 function App({user}) {
   
 
@@ -13,7 +13,7 @@ function App({user}) {
 
   return (
     <>
-    <h1>Hello World</h1>
+   
     </>
   )
 }

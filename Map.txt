@@ -179,15 +179,18 @@ DataBase Tasks :
 1) mongodb setup and connection 21-10-25 ✅
 
 Frontend Tasks : 
-1) Desing login and Signup 28-10-25    Ref Link : https://codepen.io/mr-zouraiz123/pen/ZEeKMVP
-2) Desgin Advertisement Feed 28-10-25 Ref Link : https://www.olx.in/en-in/post/attributes
-3) Desgin Home Page 29-10-25 
-4) Desgin Advertisement Creating Page 29-10-25 
-5) Desgin Payment Gateways 30-10-25 Ref Link : https://www.pinterest.com/pin/web-design-web-ui-design-website-design--31947478603138961/
-6) Desgin Chat Features UI 01-11-25
-7) Design Advertisement History And Payment History 02-11-25
-8) Desgin Profile Settings Page 02-11-25
-
-
-
+1) Desing login and Signup 28-10-25    Ref Link : https://codepen.io/mr-zouraiz123/pen/ZEeKMVP ✅
+2) Desgin Advertisement Feed 28-10-25 Ref Link : https://www.olx.in/en-in/post/attributes ✅
+3) Desgin Home Page 29-10-25 ✅
+4) Desgin Advertisement Creating Page 29-10-25 ✅
+5) Desgin Payment Gateways 30-10-25 Ref Link : ✅
+6) Desgin Chat Features UI 01-11-25 
+7) Design Advertisement History 02-11-25 ✅
+8) Desgin Profile Settings Page 02-11-25 ✅
+9) Desing Payment History ✅
+10) Desgin Advertisement Decription UI 
+11) Add Logout Feature Also 
+Other Tasks : 
+1) Connect Backend And Frontend
+2) Deploy
 

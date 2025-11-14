@@ -7,9 +7,9 @@ const handleCreateAdvertisement = asyncHandler(async (req, res, next) => {
     // here we will be having a seller who is creating a advertisement because we are injecting a middleware before htting this route and from req object we can get the seller
 
     const sellerId = req.seller._id
-    const { serviceType, title, description, city, address, price, homeDelivery, mobileNo } = req.body
+    const { serviceType, title, description, city, address, price , mobileNo } = req.body
 
-    if (!serviceType || !title || !city || !price || !homeDelivery || !mobileNo) {
+    if (!serviceType || !title || !city || !price || !mobileNo) {
         return res
             .status(401)
             .json('All Fields Are Required')
@@ -39,8 +39,7 @@ const handleCreateAdvertisement = asyncHandler(async (req, res, next) => {
         city,
         address,
         price,
-        homeDelivery,
-        imageFiles,
+        images : imageFiles,
         mobileNo,
     })
 

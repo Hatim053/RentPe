@@ -8,7 +8,8 @@ const advertisementSchema = new mongoose.Schema({
     },
     serviceType: {
         type: String,
-        enum: ['furniture', 'utensils', 'properties', 'electronics', 'lighting', 'catering', 'tent and decoration'],
+        enum: ['furniture', 'properties & spaces', 'electronics & applainces', , 'catering  & serving', 'lighting & decoration' , 'services'],
+        default : 'services',
         required: true,
     },
     title: {
@@ -27,10 +28,6 @@ const advertisementSchema = new mongoose.Schema({
     },
     price: {
         type: Number,
-        required: true,
-    },
-    homeDelivery: {
-        type: Boolean,
         required: true,
     },
     images: {
