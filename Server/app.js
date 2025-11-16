@@ -7,7 +7,7 @@ import userRoutes from './src/routes/user.routes.js'
 import sellerRoutes from './src/routes/seller.routes.js'
 import advertisementRoutes from './src/routes/advertisement.routes.js'
 import paymentRoutes from './src/routes/payment.routes.js'
-import chatRoutes from './src/routes/message.routes.js'
+import chatRoutes from './src/routes/chat.routes.js'
 
 const app = express()
 

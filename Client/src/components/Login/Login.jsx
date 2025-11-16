@@ -1,12 +1,11 @@
 import React from "react";
-import styles from "./Login.module.css";
+import styles from "./login.module.css";
 
 function Login () {
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper} ${styles.loginWrapper}`}>
       <div className={styles.titleText}>
         <div className={styles.title}>Login Form</div>
-        <div className={styles.title}>Signup Form</div>
       </div>
 
       <div className={styles.formContainer}>

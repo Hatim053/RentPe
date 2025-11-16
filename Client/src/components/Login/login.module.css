@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
-/* RESET */
+/* Reset (safe to keep) */
 :global(*) {
   margin: 0;
   padding: 0;
@@ -8,19 +8,22 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* CENTER FORM IN MIDDLE + WHITE BACKGROUND */
-:global(html, body) {
-  min-height: 100vh;
-  width: 100%;
+/* Use a wrapper to center login form */
+.loginWrapper {
+  margin-top: 15vh;
+  height: 70vh;
   display: flex;
+  width: 50vw;
   justify-content: center;
-  align-items: center;
-  background: #ffffff !important;
+  flex-direction: column;
+  align-content: center;
+  background: #ffffff;
 }
+
 
 /* SELECTION COLOR */
 :global(::selection) {
-  background: #1a75ff;
+  /* background: #1a75ff; */
   color: #fff;
 }
 

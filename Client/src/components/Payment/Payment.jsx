@@ -1,8 +1,10 @@
 import React from "react"
+import styles from './payment.module.css'
+
 
 function Payment() {
   async function payNow() {
-    const amount = document.getElementById('amount').value;
+    const amount = 299*100;
 
     // Create order by calling the server endpoint
     const response = await fetch('http://localhost:5000/payment/create-order', {
@@ -75,12 +77,75 @@ window.location.href = 'http://localhost:5173/payment-success'  // replace this 
 
   return (
     <>
-      <h1>Razorpay Payment Gateway Integration</h1>
-      <form id="payment-form">
-        <label htmlFor="amount">Amount:</label>
-        <input type="number" id="amount" name="amount" required />
-        <button type="button" onClick={payNow}>Pay Now</button>
-      </form>
+ 
+
+
+    <header  className = {styles['page-header']}>
+        <h1>Choose Your Plan</h1>
+        <p>Unlock the full potential of our platform with the right plan for you.</p>
+    </header>
+
+    <main  className = {styles['pricing-container']}>
+
+        <div  className = {`${styles['plan-card']} ${styles['free-plan']} ${styles['active-plan']}`}>
+            <div  className = {styles['plan-header']}>
+                <h2  className = {styles['plan-title']}>Free Basic</h2>
+                <p  className = {styles['plan-tagline']}>Start exploring at no cost</p>
+            </div>
+
+            <div  className = {styles['plan-price']}>
+                <span  className = {styles['price-value']}>Free</span>
+            </div>
+
+            <ul className = {styles['plan-features']}>
+                <li  className = {styles['feature-item']}>
+                    <span  className = {styles['check-icon']}>&#10003;</span>
+                    **3** Advertisements per month
+                </li>
+                <li  className = {styles['feature-item']}>
+                    <span  className = {styles['check-icon']}>&#10003;</span>
+                    Basic analytics
+                </li>
+                <li  className = {styles['feature-item-excluded']}>
+                    <span  className = {styles['check-icon']}>&#10003;</span>
+                    Default Activated
+                </li>
+            </ul>
+
+            <button  className = {`${styles['plan-button']} ${styles['current-button']}`} disabled>Current Plan</button>
+        </div>
+        <div className = {`${styles['plan-card']} ${styles['paid-plan']}`}>
+            <div  className = {styles['plan-badge']}>Most Popular</div>
+            <div  className = {styles['plan-header']}>
+                <h2 className = {styles['plan-title']}>Premium Ad</h2>
+                <p  className = {styles['plan-tagline']}>Maximize your reach and impact</p>
+            </div>
+
+            <div  className = {styles['plan-price']}>
+                <span  className = {styles['price-value']}>₹299</span>
+                <span  className = {styles['price-period']}>/ 28 days</span>
+            </div>
+
+            <ul className = {styles['plan-features']}>
+                <li  className = {styles['feature-item']}>
+                    <span  className = {styles['check-icon']}>&#10003;</span>
+                    **Unlimited** Ads per month
+                </li>
+                <li className = {styles['feature-item']}>
+                    <span  className = {styles['check-icon']}>&#10003;</span>
+                    Priority support
+                </li>
+                <li  className = {styles['feature-item']}>
+                    <span  className = {styles['check-icon']}>&#10003;</span>
+                    Advanced performance reports
+                </li>
+            </ul>
+
+            <button  class="plan-button buy-now-button" className = {`${styles['plan-button']} ${styles['buy-now-button']}`} onClick = {payNow}>Buy Now</button>
+        </div>
+        </main>
+
+
 
     </>
   )

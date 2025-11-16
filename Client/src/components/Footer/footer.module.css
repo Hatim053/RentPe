@@ -1,0 +1,78 @@
+.footer {
+  background: #0f172a; 
+  color: #e5e7eb; 
+  padding: 3rem 1rem;
+  font-family: 'Poppins', sans-serif;
+  border-top: 1px solid #1e293b;
+  margin-top: 10px;
+}
+
+.footerContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footerBrand .logo {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #3b82f6; 
+  margin-bottom: 0.5rem;
+}
+
+.footerBrand p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.footerLinks h4,
+.footerSocial h4 {
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  color: #f1f5f9;
+}
+
+.footerLinks ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footerLinks ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footerLinks a {
+  text-decoration: none;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.footerLinks a:hover {
+  color: #3b82f6; 
+}
+
+.footerSocial .socialIcons a {
+  margin-right: 0.8rem;
+  font-size: 1.2rem;
+  color: #94a3b8;
+  transition: color 0.2s ease;
+}
+
+.footerSocial .socialIcons a:hover {
+  color: #3b82f6;
+}
+
+.footerBottom {
+  text-align: center;
+  margin-top: 2rem;
+  background: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+  padding: 1rem;
+  font-size: 0.85rem;
+  color: #111827; 
+}

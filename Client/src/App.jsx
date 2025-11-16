@@ -3,6 +3,13 @@ import './App.css'
 import  socket  from './socket.js'
 import { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
+import Header from './components/Header/Header.jsx'
+import Nav from './components/Nav/Nav.jsx'
+import Banner from './components/Banner/Banner.jsx'
+import Feed from './components/Feed/Feed.jsx'
+import Footer from './components/Footer/Footer.jsx'
+import Profile from './components/Profile/Profile.jsx'
+
 function App({user}) {
   
 
@@ -13,7 +20,11 @@ function App({user}) {
 
   return (
     <>
-   
+   <Header />
+   <Nav />
+   <Banner />
+   <Feed />
+   <Footer />
     </>
   )
 }

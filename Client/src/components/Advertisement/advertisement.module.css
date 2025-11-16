@@ -1,0 +1,44 @@
+  .advertisement{
+  width: 20vw;
+  display: flex;
+  border: 2px solid black;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  gap: 2px;
+  overflow: hidden;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border-radius: 5px;
+
+ }
+ .advertisement .text{
+  display: flex;
+  align-items:  center;
+  justify-content: space-between;
+  padding-left: 12px;
+  padding-right: 12px;
+  width: 95%;
+ }
+ .advertisement .price , .title{
+  display:  flex;
+  align-items: center;
+  padding-left: 12px;
+  width: 95%;
+ }
+ .advertisement .price{
+  font-weight: 900;
+  font-size: large;
+ }
+
+ .advertisement .img{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+
+
+ .advertisement:hover {
+  transform: scale(1.05); 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+ }

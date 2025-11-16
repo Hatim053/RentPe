@@ -188,8 +188,8 @@ Frontend Tasks :
 7) Design Advertisement History 02-11-25 ✅
 8) Desgin Profile Settings Page 02-11-25 ✅
 9) Desing Payment History ✅
-10) Desgin Advertisement Decription UI 
-11) Add Logout Feature Also 
+10) Desgin Advertisement Decription UI ✅
+11) Design Pay Now Ui 
 Other Tasks : 
 1) Connect Backend And Frontend
 2) Deploy
