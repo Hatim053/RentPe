@@ -1,7 +1,7 @@
 import asyncHandler from '../utilities/asyncHandler.js'
 import jwt from 'jsonwebtoken'
 import User from '../models/user.model.js' 
-
+import Seller from '../models/seller.model.js'
 
 const authenticateUser = asyncHandler(async(req , res , next) => {
 const token = req.cookies?.accessToken
@@ -22,19 +22,37 @@ next()
 })
 
 const authenticateSeller = asyncHandler(async(req , res , next) => {
-    const token = req.cookies?.accessToken
+    const token = req.cookies.accessToken
+    
     if(! token) {
-        return res.redirect() // redirect for login route beacuse no token exist
+        return res
+        .status(405)
+        .json({
+            status : 405,
+            message : 'token not found',
+            redirectUrl : '/seller-login',
+        })// redirect for login route beacuse no token exist
     }
     const decodedToken = jwt.verify(token , process.env.ACCESSTOKENSECRET)
 
     if(! decodedToken) {
-        return res.redirect() // means token error / expire token so redirect to refreshAccess route
+        return res.
+        status(406).
+        json({
+            status : 406,
+            message : 'token expired',
+        }) // means token error / expire token so redirect to refreshAccess route
     }
     const seller = await Seller.findById({_id : decodedToken._id}).select("-password -refreshToken")
 
     if(! seller) {
-        return res.redirect() // means no seller exist redirect to signup route
+        return res
+        .status(405)
+        .json({
+            status : 405,
+            message : 'seller with the token  not found',
+            redirectUrl : '/seller-signup',
+        }) // means no seller exist redirect to signup route
     }
 
     req.seller = seller

@@ -8,7 +8,7 @@ const advertisementSchema = new mongoose.Schema({
     },
     serviceType: {
         type: String,
-        enum: ['furniture', 'properties & spaces', 'electronics & applainces', , 'catering  & serving', 'lighting & decoration' , 'services'],
+        enum: ['furniture', 'properties & spaces', 'electronics & applainces',  'catering  & serving', 'lighting & decoration' , 'other services'],
         default : 'services',
         required: true,
     },
@@ -41,7 +41,7 @@ const advertisementSchema = new mongoose.Schema({
     },
     live: {
         type: Boolean,
-        default: false,
+        default: true,
     }
 
 }, { timestamps: true })

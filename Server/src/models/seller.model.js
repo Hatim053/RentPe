@@ -40,7 +40,7 @@ const sellerSchema = new mongoose.Schema({
     },
     businessType : [{
   type: String,
-  enum: ['furniture' , 'utensils' , 'properties' , 'electronics' , 'lighting' , 'catering' , 'tent and decoration'],
+  enum: ['furniture' , 'utensils' , 'properties' , 'electronics' , 'lighting' , 'catering' , 'tent' , 'decoration'],
   required : true,
 }],
     lastPayment : {
@@ -74,13 +74,13 @@ next()
 })
 
 
-sellerSchema.method.isPasswordCorrect = async function(password) {
+sellerSchema.methods.isPasswordCorrect = async function(password) {
     return await bcrypt.compare(password , this.password)
 }
 
 
-sellerSchema.method.generateAccessToken = function() {
-    jwt.sign({
+sellerSchema.methods.generateAccessToken = function() {
+   return jwt.sign({
         _id : this._id,
         username : this.username,
     },
@@ -88,8 +88,8 @@ sellerSchema.method.generateAccessToken = function() {
     {expiresIn : process.env.ACCESSTOKENEXPIRY})
 }
 
-sellerSchema.method.generateRefreshToken = function() {
-    jwt.sign({
+sellerSchema.methods.generateRefreshToken = function() {
+  return  jwt.sign({
     _id : this._id,
     },
     process.env.REFRESHTOKENSECRET,

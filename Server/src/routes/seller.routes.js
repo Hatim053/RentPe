@@ -1,4 +1,4 @@
-import { verifyNumber , handleSellerLogin , handleSellerSignup , handlerSellerLogout , uploadProfileImage } from '../controllers/seller.controller.js'
+import { verifyNumber , handleSellerLogin , handleSellerSignup , handlerSellerLogout , updateSeller } from '../controllers/seller.controller.js'
 import { authenticateSeller } from "../middlewares/authentication.js"
 import upload from '../middlewares/multer.js'
 
@@ -10,7 +10,7 @@ const sellerRoutes = Router()
 
 sellerRoutes.post('/login' , handleSellerLogin)
 sellerRoutes.post('/signup' , handleSellerSignup)
-sellerRoutes.post('/uploadProfile' , authenticateSeller  , upload.single('profile') , uploadProfileImage)
+sellerRoutes.post('/update' , authenticateSeller  , upload.single('profileImage') , updateSeller)
 sellerRoutes.post("/send-otp", authenticateSeller , verifyNumber)
 
 

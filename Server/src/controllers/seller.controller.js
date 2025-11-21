@@ -5,6 +5,7 @@ import uploadOnCloudinary from '../utilities/cloudinary.js'
 import { client, generateOTP } from '../utilities/otp.js'
 
 
+
 const options = {
     httpOnly: true,
     secure: true,
@@ -49,7 +50,7 @@ const handleSellerLogin = asyncHandler(async (req, res, next) => {
                 message: 'no user exist with the email'
             })
     }
-    const validatePassword = await Seller.isPasswordCorrect(password)
+    const validatePassword = await seller.isPasswordCorrect(password)
     if (!validatePassword) {
         return res
             .status(401)
@@ -59,7 +60,7 @@ const handleSellerLogin = asyncHandler(async (req, res, next) => {
             })
     }
 
-    const { refreshToken, accessToken } = generateAccessAndRefreshToken(seller)
+    const { refreshToken, accessToken } = await generateAccessAndRefreshToken(seller)
     const updatedSeller = await Seller.findById({ _id: seller._id }).select("-password -refreshToken")
     if (!updatedSeller) {
         return res
@@ -69,6 +70,7 @@ const handleSellerLogin = asyncHandler(async (req, res, next) => {
                 message: 'something went wrong',
             })
     }
+
     return res
         .status(200)
         .cookie('refreshToken', refreshToken, options)
@@ -89,12 +91,13 @@ const handleSellerSignup = asyncHandler(async (req, res, next) => {
     // create a seller 
     // check seller created succesfully
     // redirect for login
+    console.log(req.body)
     const { email, username, fullName, password, mobileNo, location, businessType } = req.body
     if (!email || !username || !fullName || !password || !mobileNo || !location || !businessType) {
         return res
-            .status(401)
+            .status(404)
             .json({
-                status: 401,
+                status: 404,
                 message: 'All Details are required'
             })
     }
@@ -104,9 +107,9 @@ const handleSellerSignup = asyncHandler(async (req, res, next) => {
 
     if (existedSeller) {
         return res
-            .status(400)
+            .status(401)
             .json({
-                status: 400,
+                status: 401,
                 message: 'seller already exist'
             })
     }
@@ -212,26 +215,35 @@ const handlerSellerLogout = asyncHandler(async (req, res, next) => {
 })
 
 
-const uploadProfileImage = asyncHandler(async (req, res, next) => {
-    const profileImageLocalPath = req.file.path
-    const image = await uploadOnCloudinary(profileImageLocalPath)
-    if (!response) {
+const updateSeller = asyncHandler(async (req, res, next) => {
+    const profileImageLocalPath = req.file?.path
+        let updated = {}
+    if( profileImageLocalPath) {
+    const profileImage = await uploadOnCloudinary(profileImageLocalPath)
+    if (! profileImage) {
         return res.json({
             status: 500,
             message: 'upload on cloudinary failed',
         })
     }
+    updated = {profileImage : profileImage.url}
+    }
+    const {fullName , email , username}  = req.body
+    updated = {...updated , fullName , email , username}
     const seller = await Seller.findByIdAndUpdate(
-        { _id: req.seller._id },
-        { $set: { profileImage: image.url } },
-        { new: true }
+        {_id : req.seller._id},
+        {$set : updated},
+        {new : true , runValidators : true}
     )
+      
+  console.log(seller)
 
     return res
         .status(200)
         .json({
             status: 200,
-            message: 'profileImage uploaded successfully',
+            message: 'profile updated successfully',
+            user : seller,
         })
 })
 
@@ -274,5 +286,5 @@ export {
     handleSellerLogin,
     handlerSellerLogout,
     handleSellerSignup,
-    uploadProfileImage,
+    updateSeller,
 }

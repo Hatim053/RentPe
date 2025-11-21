@@ -31,11 +31,21 @@
   font-size: large;
  }
 
- .advertisement .img{
+.advertisement .img {
   display: flex;
   align-items: center;
   justify-content: center;
- }
+  width: 20vw;
+  height: 16vw;
+  overflow: hidden;      /* Prevent overflow */
+  border-radius: 5px;
+}
+
+.advertisement .img img {
+  width: 90%;
+  height: 100%;
+  object-fit: cover;     /* Ensures consistent crop and size */
+}
 
 
  .advertisement:hover {

@@ -2,9 +2,16 @@ import React from "react"
 import styles from './header.module.css'
 import logo from './ChatGPT Image Nov 11, 2025, 07_40_12 AM.png'
 import chatIcon from './messenger.png'
-
+import {useNavigate} from 'react-router-dom'
 function Header() {
+    const navigate = useNavigate()
+  function redirectProfile() {
+    navigate('/profile')
+  }
 
+  function redirectPostAd() {
+    navigate('/postAdvertisement')
+  }
     return (
         <>
                 <header className = {styles.header}>
@@ -40,7 +47,7 @@ function Header() {
             <div className = {styles.controlls}>
 
 
-                <button className = {styles.profileBtn} title="Profile">
+                <button className = {styles.profileBtn} onClick = {redirectProfile} title="Profile">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <circle cx="12" cy="8" r="4" />
                         <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
@@ -51,7 +58,7 @@ function Header() {
                 </button>
                 <button className = {styles.logoutBtn}>Logout
                 </button>
-                <button className = {styles.sellBtn}>
+                <button className = {styles.sellBtn} onClick = {redirectPostAd}>
                     Rent Out Now
                 </button>
             </div>

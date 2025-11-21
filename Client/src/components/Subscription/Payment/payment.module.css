@@ -20,7 +20,7 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
-    padding: 40px 20px;
+    /* padding: 40px 20px; */
 }
 
 /* Page Header Styling */

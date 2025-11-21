@@ -9,24 +9,29 @@ import Banner from './components/Banner/Banner.jsx'
 import Feed from './components/Feed/Feed.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import Profile from './components/Profile/Profile.jsx'
+import { useDispatch , useSelector } from 'react-redux'
 
-function App({user}) {
+function App() {
   
+const user = useSelector(state => state?.loggedInUser);
 
+console.log(user)
   useEffect(() => {
     if(user?._id) socket.emit('registerUser' , user._id) // emmiting event to backend after user/seller login so that we can store their socketId's
   } , [user])
-
 
   return (
     <>
    <Header />
    <Nav />
-   <Banner />
-   <Feed />
+    <Banner />
+   <Feed searchedQuery = 'furniture'/> 
    <Footer />
+
+
     </>
   )
+
 }
 
 export default App

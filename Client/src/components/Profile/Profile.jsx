@@ -1,29 +1,53 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from "./profile.module.css"
-
-
-
+import { useSelector , useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
+import { addUser } from "../../user/userSlice"
 
 function Profile() {
   const [isEditing, setIsEditing] = useState(false);
 
-  const [profile, setProfile] = useState({
-    username: "hatim_hussain",
-    fullname: "Hatim Hussain",
-    email: "hatim@example.com",
-    accountType: "User",
-  });
+  const [profile, setProfile] = useState({});
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
+  const user = useSelector(state => state?.loggedInUser);
+  useEffect(() => {
+    setProfile(user)
+
+  } , [user])
+  
   const handleChange = (e) => {
     setProfile({ ...profile, [e.target.name]: e.target.value });
+    
   };
 
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
     setIsEditing(false);
-    // Here you can send API request to save profile
+    const formData = new FormData(e.target)
+    
+   const response = await fetch('http://localhost:5000/seller/update' , {
+    method : 'POST',
+    credentials: "include",
+    body : formData,
+   })
+   let data = await response.json()
+   console.log(data)
+   if(data.status == 200) {
+    // console.log(data.user)
+    dispatch(addUser(data))
+    setProfile(data.user)
+   }
+    
   };
 
+   
+  function redirectPayment() {
+    navigate('/payment')
+  }
+
+  const srcUrl = profile.profileImage ?? 'https://cdn-icons-png.flaticon.com/512/847/847969.png'
   return (
     <div className = {styles.profileContainer}>
       <div className = {styles.profileCard}>
@@ -34,16 +58,17 @@ function Profile() {
         {/* Profile Image Section */}
         <div  className = {styles.profileImageSection}>
           <img
-            src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+            src = {srcUrl}
             alt="Profile"
             id="profile-pic"
           />
-          <label htmlFor="file-upload"  className = {styles.uploadBtn}>Change Photo</label>
-          <input type="file" id="file-upload" hidden />
+          <label htmlFor="profileImage"  className = {styles.uploadBtn}>Change Photo</label>
+          
         </div>
 
         {/* FORM START */}
         <form className = {styles.profileForm} onSubmit={handleSave}>
+          <input type="file" id="profileImage" name ="profileImage" hidden />
           <div className = {styles.formGroup}>
             <label>Username</label>
             <input
@@ -60,7 +85,7 @@ function Profile() {
             <input
               type="text"
               name="fullname"
-              value={profile.fullname}
+              value={profile.fullName}
               onChange={handleChange}
               readOnly={!isEditing}
             />
@@ -85,8 +110,8 @@ function Profile() {
               onChange={handleChange}
               disabled={!isEditing}
             >
-              <option>User</option>
-              <option>Seller</option>
+              <option>user</option>
+              <option>seller</option>
             </select>
           </div>
 
@@ -119,9 +144,36 @@ function Profile() {
         {/* Seller redirect */}
         <div className = {styles.becomeSeller}>
           <p>Want to list your products for rent?</p>
-          <a href="/seller/signup" className = {styles.sellerBtn}>Become a Seller</a>
+          <a href="/seller-signup" className = {styles.sellerBtn}>Become a Seller</a>
         </div>
       </div>
+      <div  className = {`${styles['plan-card']} ${styles['free-plan']} ${styles['active-plan']}`}>
+                  <div  className = {styles['plan-header']}>
+                      <h2  className = {styles['plan-title']}>Free Basic</h2>
+                      <p  className = {styles['plan-tagline']}>Start exploring at no cost</p>
+                  </div>
+      
+                  <div  className = {styles['plan-price']}>
+                      <span  className = {styles['price-value']}>Free</span>
+                  </div>
+      
+                  <ul className = {styles['plan-features']}>
+                      <li  className = {styles['feature-item']}>
+                          <span  className = {styles['check-icon']}>&#10003;</span>
+                          **3** Advertisements per month
+                      </li>
+                      <li  className = {styles['feature-item']}>
+                          <span  className = {styles['check-icon']}>&#10003;</span>
+                          Basic analytics
+                      </li>
+                      <li  className = {styles['feature-item-excluded']}>
+                          <span  className = {styles['check-icon']}>&#10003;</span>
+                          Default Activated
+                      </li>
+                  </ul>
+      
+                  <button  className = {`${styles['plan-button']} ${styles['buy-now-button']}`} onClick = {redirectPayment} >Change Plan</button>
+              </div>
     </div>
   );
 }

@@ -27,7 +27,7 @@ const handleUserLogin = asyncHandler(async (req, res, next) => {
     const user = await User.findOne({ email: email })
 
     if (!user) {
-        throw new apiError(404, 'user doesnt exist')
+        throw new apiError(401, 'user doesnt exist')
     }
 
     if (!password) {
@@ -40,7 +40,7 @@ const handleUserLogin = asyncHandler(async (req, res, next) => {
     }
 
     const { refreshToken, accessToken } = await generateAccessAndRefreshToken(user)
-    const updatedUser = await User.findById(createdUser._id).select(
+    const updatedUser = await User.findById(user._id).select(
         "-password -refreshToken"
     )
 
@@ -70,7 +70,13 @@ const handleUserSignup = asyncHandler(async (req, res, next) => {
     })
 
     if (existedUser) {
-        throw new apiError(400, 'user already exist')
+        return res
+        .status(401)
+        .json({
+            status: 401,
+            message: 'user already existed'
+        }
+        )
     }
     const createdUser = await User.create({
         username,
@@ -139,30 +145,41 @@ const handlerUserLogout = asyncHandler(async (req, res, next) => {
         })
 })
 
-const uploadProfileImage = asyncHandler(async (req, res, next) => {
-    const profileImageLocalPath = req.file.path
-    const image = await uploadOnCloudinary(profileImageLocalPath)
-    if (!image) {
+const updateUser = asyncHandler(async (req, res, next) => {
+    const profileImageLocalPath = req.file?.path
+
+    let updated = {}
+    if(profileImageLocalPath) {
+
+  
+    const profileImage = await uploadOnCloudinary(profileImageLocalPath)
+    if (! profileImage) {
         return res.json({
             status: 500,
             message: 'upload on cloudinary failed',
         })
     }
+    updated = {profileImage}
+      }
+
+    const {fullName , username , email} = req.body
+    updated = {...updated , fullName , username , email}
+
     const user = await User.findByIdAndUpdate(
         { _id: req.user._id },
-        { $set: { profileImage: image.url } },
-        { new: true }
+        { $set: updated},
+        { new: true  , runValidators : true}
     )
-
     return res
         .status(200)
         .json({
             status: 200,
             message: 'profileImage uploaded successfully',
+            user,
         })
 })
 
 
 
 
-export { handleUserLogin, handleUserSignup, uploadProfileImage }
+export { handleUserLogin, handleUserSignup, updateUser }

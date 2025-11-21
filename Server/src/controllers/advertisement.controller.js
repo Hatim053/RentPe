@@ -12,7 +12,10 @@ const handleCreateAdvertisement = asyncHandler(async (req, res, next) => {
     if (!serviceType || !title || !city || !price || !mobileNo) {
         return res
             .status(401)
-            .json('All Fields Are Required')
+            .json({
+                status : 401,
+                message : 'All Fields Are Required',
+            })
     }
 
 
@@ -21,7 +24,9 @@ const handleCreateAdvertisement = asyncHandler(async (req, res, next) => {
     if (!images || images.length == 0) {
         return res
             .status(401)
-            .json('Images Required')
+            .json({
+                status : 401,
+                message : 'Images Required'})
     }
 
     const imageFiles = []
@@ -43,6 +48,16 @@ const handleCreateAdvertisement = asyncHandler(async (req, res, next) => {
         mobileNo,
     })
 
+
+   
+     if(! createdAdvertisement) {
+         return res
+            .status(500)
+            .json({
+                status : 500,
+                message : 'somthing went wrong',
+            })
+    }
     console.log(createdAdvertisement)
     return res
         .status(201)
@@ -74,6 +89,23 @@ const handleFetchLiveAds = asyncHandler(async (req, res, next) => {
         })
 })
 
+
+const handleSearchedAdvertisements = asyncHandler(async (req , res ,) => {
+    const  searchedQuery  = String(req.params.searchedQuery || "").trim()
+    console.log(searchedQuery)
+    const ads = await Advertisment.find({
+        serviceType : { $regex : searchedQuery , $options : "i"}
+    })
+    
+    return res
+    .status(200)
+    .json({
+        status : 200,
+        message : 'Ads Fetched Successfully',
+        ads,
+    })
+})
+
 const handleDeleteAdvertisement = asyncHandler(async (req, res, next) => {
     const advertisementId = req.params._id
     const deletedAdvertisement = await Advertisment.findByIdAndDelete(advertisementId)
@@ -96,34 +128,12 @@ const handleDeleteAdvertisement = asyncHandler(async (req, res, next) => {
 })
 
 
-const handleLiveAd = asyncHandler(async (req, res, next) => {
-    const advertisementId = req.params.id
-    const liveAdvertisement = await Advertisment.findByIdAndUpdate(
-        advertisementId,
-        { live: true, }
-    )
 
-    if (!liveAdvertisement) {
-        return res
-            .status(500)
-            .json({
-                status: 500,
-                message: 'something went wrong',
-            })
-    }
-
-    return res
-        .status(200)
-        .json({
-            status: 200,
-            message: 'Advertisement published Live'
-        })
-})
 
 
 export {
     handleCreateAdvertisement,
     handleFetchLiveAds,
     handleDeleteAdvertisement,
-    handleLiveAd,
+    handleSearchedAdvertisements,
 }
