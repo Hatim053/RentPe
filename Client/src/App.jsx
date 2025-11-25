@@ -8,7 +8,7 @@ import Nav from './components/Nav/Nav.jsx'
 import Banner from './components/Banner/Banner.jsx'
 import Feed from './components/Feed/Feed.jsx'
 import Footer from './components/Footer/Footer.jsx'
-import Profile from './components/Profile/Profile.jsx'
+
 import { useDispatch , useSelector } from 'react-redux'
 
 function App() {
@@ -25,7 +25,7 @@ console.log(user)
    <Header />
    <Nav />
     <Banner />
-   <Feed searchedQuery = 'furniture'/> 
+     <Feed searchedQuery = 'furniture'/>
    <Footer />
 
 

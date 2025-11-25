@@ -24,6 +24,7 @@ const handleUserLogin = asyncHandler(async (req, res, next) => {
     if (!email) {
         throw new apiError(401, 'email required')
     }
+    console.log(email)
     const user = await User.findOne({ email: email })
 
     if (!user) {
@@ -47,6 +48,7 @@ const handleUserLogin = asyncHandler(async (req, res, next) => {
     if (!updatedUser) {
         throw new apiError(500, 'something went wrong')
     }
+    console.log(refreshToken , accessToken)
     return res
         .status(200)
         .cookie('refreshToken', refreshToken, options)
@@ -146,8 +148,10 @@ const handlerUserLogout = asyncHandler(async (req, res, next) => {
 })
 
 const updateUser = asyncHandler(async (req, res, next) => {
-    const profileImageLocalPath = req.file?.path
 
+    console.log('request ayi he')
+    const profileImageLocalPath = req.file?.path
+   
     let updated = {}
     if(profileImageLocalPath) {
 
@@ -159,7 +163,7 @@ const updateUser = asyncHandler(async (req, res, next) => {
             message: 'upload on cloudinary failed',
         })
     }
-    updated = {profileImage}
+    updated = {profileImage : profileImage.url}
       }
 
     const {fullName , username , email} = req.body
@@ -170,6 +174,7 @@ const updateUser = asyncHandler(async (req, res, next) => {
         { $set: updated},
         { new: true  , runValidators : true}
     )
+    console.log(user)
     return res
         .status(200)
         .json({
@@ -182,4 +187,4 @@ const updateUser = asyncHandler(async (req, res, next) => {
 
 
 
-export { handleUserLogin, handleUserSignup, updateUser }
+export { handleUserLogin, handleUserSignup, updateUser , handlerUserLogout }

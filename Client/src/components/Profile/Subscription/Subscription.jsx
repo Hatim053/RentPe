@@ -1,8 +1,10 @@
-import React from "react"
-import styles from './payment.module.css'
+import React, { useState } from "react"
+import styles from './subscription.module.css'
+import { useSelector } from "react-redux"
 
+function Subscription() {
+const user = useSelector(state => state.loggedInUser)
 
-function Payment() {
   async function payNow() {
     const amount = 299*100;
 
@@ -28,9 +30,10 @@ function Payment() {
       handler : async function(response) {
 
        const body = {...response , amount }
-
+          
       const validate = await fetch('http://localhost:5000/payment/validate-transaction' , {
         method : 'POST',
+        credentials : 'include',
         headers: {
         'Content-Type': 'application/json'
       },
@@ -38,14 +41,14 @@ function Payment() {
       })
        
       const validateResponse = await validate.json()
-            // console.log(validateResponse)
-    window.location.href = 'http://localhost:5173/payment-success'  // replace this with the page showing transaction details
+            console.log(validateResponse)
+    window.location.href = 'http://localhost:5173/payment-history'  // replace this with the page showing transaction details
 
       },
       prefill: {
-        name: 'Gaurav Kumar',
-        email: 'gaurav.kumar@example.com',
-        contact: '9999999999'
+        name: user?.username || 'user',
+        email: user?.email || 'user',
+        contact: user?.mobileNo || '8770956153',
       },
       theme: {
         color: '#F37254'
@@ -67,8 +70,8 @@ function Payment() {
       
       const dataResponse = await data.json();
 
-
-window.location.href = 'http://localhost:5173/payment-success'  // replace this with the page showing transaction details
+     
+window.location.href = 'http://localhost:5173/payment-history'  
     })
 
    rzp.open();
@@ -79,7 +82,7 @@ window.location.href = 'http://localhost:5173/payment-success'  // replace this 
     <>
  
 
-
+<div className={styles["container"]}>
     <header  className = {styles['page-header']}>
         <h1>Choose Your Plan</h1>
         <p>Unlock the full potential of our platform with the right plan for you.</p>
@@ -145,10 +148,10 @@ window.location.href = 'http://localhost:5173/payment-success'  // replace this 
         </div>
         </main>
 
-
+</div>
 
     </>
   )
 }
 
-export default Payment
+export default Subscription

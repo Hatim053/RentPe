@@ -7,6 +7,8 @@ const handleCreateAdvertisement = asyncHandler(async (req, res, next) => {
     // here we will be having a seller who is creating a advertisement because we are injecting a middleware before htting this route and from req object we can get the seller
 
     const sellerId = req.seller._id
+    const sellerUsername = req.seller.username
+    console.log(sellerUsername , req.seller)
     const { serviceType, title, description, city, address, price , mobileNo } = req.body
 
     if (!serviceType || !title || !city || !price || !mobileNo) {
@@ -46,6 +48,7 @@ const handleCreateAdvertisement = asyncHandler(async (req, res, next) => {
         price,
         images : imageFiles,
         mobileNo,
+        sellerUsername,
     })
 
 

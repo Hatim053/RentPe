@@ -12,6 +12,7 @@ sellerRoutes.post('/login' , handleSellerLogin)
 sellerRoutes.post('/signup' , handleSellerSignup)
 sellerRoutes.post('/update' , authenticateSeller  , upload.single('profileImage') , updateSeller)
 sellerRoutes.post("/send-otp", authenticateSeller , verifyNumber)
+sellerRoutes.get('/logout' , authenticateSeller , handlerSellerLogout)
 
 
 

@@ -6,6 +6,12 @@ const advertisementSchema = new mongoose.Schema({
         ref: 'Seller',
         required: true,
     },
+    sellerUsername : {
+        type : String,
+    },
+    sellerImage : {
+        type : String,
+    },
     serviceType: {
         type: String,
         enum: ['furniture', 'properties & spaces', 'electronics & applainces',  'catering  & serving', 'lighting & decoration' , 'other services'],

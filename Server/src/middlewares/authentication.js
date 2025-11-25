@@ -5,8 +5,9 @@ import Seller from '../models/seller.model.js'
 
 const authenticateUser = asyncHandler(async(req , res , next) => {
 const token = req.cookies?.accessToken
+console.log(token)
 if(! token) {
-   return  res.redirect() // token not available so redirect user to login
+   return  res.redirect('http://localhost:5173/user/user-login') // token not available so redirect user to login
 }
 
 const decodedToken = jwt.verify(token , process.env.ACCESSTOKENSECRET)

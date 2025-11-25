@@ -49,6 +49,7 @@ function PostAdvertisement() {
     return (
         <>
         <div  className = {styles.mainWrapper}>
+           <button className = {styles['back-btn']} onClick = {() => navigate(-1)}>← Back</button>
           <div  className = {styles.formContainer}>
     <h2>Post Your Ad</h2>
     <form  onSubmit = {handleCreateAd()}>

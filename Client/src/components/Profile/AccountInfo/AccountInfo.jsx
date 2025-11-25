@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react"
-import styles from "./profile.module.css"
+import styles from "./accountInfo.module.css"
 import { useSelector , useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { addUser } from "../../user/userSlice"
+import { addUser } from "../../../user/userSlice"
 
-function Profile() {
+function AccountInfo() {
   const [isEditing, setIsEditing] = useState(false);
 
   const [profile, setProfile] = useState({});
   const navigate = useNavigate()
   const dispatch = useDispatch()
+ const loggedInUser = useSelector(state => state.loggedInUser)
 
   const user = useSelector(state => state?.loggedInUser);
   useEffect(() => {
@@ -27,17 +28,21 @@ function Profile() {
     setIsEditing(false);
     const formData = new FormData(e.target)
     
-   const response = await fetch('http://localhost:5000/seller/update' , {
-    method : 'POST',
-    credentials: "include",
-    body : formData,
-   })
-   let data = await response.json()
-   console.log(data)
-   if(data.status == 200) {
-    // console.log(data.user)
-    dispatch(addUser(data))
-    setProfile(data.user)
+   try {
+    const response = await fetch(`http://localhost:5000/${loggedInUser.accountType}/update` , {
+     method : 'POST',
+     credentials: "include",
+     body : formData,
+    })
+    let data = await response.json()
+    console.log(data)
+    if(data.status == 200) {
+     // console.log(data.user)
+     dispatch(addUser(data))
+     setProfile(data.user)
+    }
+   } catch (error) {
+    console.log(error)
    }
     
   };
@@ -50,7 +55,8 @@ function Profile() {
   const srcUrl = profile.profileImage ?? 'https://cdn-icons-png.flaticon.com/512/847/847969.png'
   return (
     <div className = {styles.profileContainer}>
-      <div className = {styles.profileCard}>
+     <div className = {styles['outer-container']}>
+       <div className = {styles.profileCard}>
         <h2  className = {styles.profileTitle}>My Profile</h2>
 
         <p  className = {styles.memberSince}>Member since: <span>January 2024</span></p>
@@ -108,7 +114,7 @@ function Profile() {
               name="accountType"
               value={profile.accountType}
               onChange={handleChange}
-              disabled={!isEditing}
+              disabled={true}
             >
               <option>user</option>
               <option>seller</option>
@@ -142,41 +148,16 @@ function Profile() {
         </form>
 
         {/* Seller redirect */}
-        <div className = {styles.becomeSeller}>
+      {loggedInUser.accountType == 'user' && <div className = {styles.becomeSeller}>
           <p>Want to list your products for rent?</p>
           <a href="/seller-signup" className = {styles.sellerBtn}>Become a Seller</a>
-        </div>
+        </div>}
       </div>
-      <div  className = {`${styles['plan-card']} ${styles['free-plan']} ${styles['active-plan']}`}>
-                  <div  className = {styles['plan-header']}>
-                      <h2  className = {styles['plan-title']}>Free Basic</h2>
-                      <p  className = {styles['plan-tagline']}>Start exploring at no cost</p>
-                  </div>
-      
-                  <div  className = {styles['plan-price']}>
-                      <span  className = {styles['price-value']}>Free</span>
-                  </div>
-      
-                  <ul className = {styles['plan-features']}>
-                      <li  className = {styles['feature-item']}>
-                          <span  className = {styles['check-icon']}>&#10003;</span>
-                          **3** Advertisements per month
-                      </li>
-                      <li  className = {styles['feature-item']}>
-                          <span  className = {styles['check-icon']}>&#10003;</span>
-                          Basic analytics
-                      </li>
-                      <li  className = {styles['feature-item-excluded']}>
-                          <span  className = {styles['check-icon']}>&#10003;</span>
-                          Default Activated
-                      </li>
-                  </ul>
-      
-                  <button  className = {`${styles['plan-button']} ${styles['buy-now-button']}`} onClick = {redirectPayment} >Change Plan</button>
-              </div>
+     </div>
+    
     </div>
   );
 }
 
 
-export default Profile
+export default AccountInfo

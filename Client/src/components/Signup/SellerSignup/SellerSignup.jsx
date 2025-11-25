@@ -68,7 +68,7 @@ const cityRef = useRef(null)
     return (
         <div className={styles.wrapper}>
             <div className={styles.titleText}>
-                <div className={styles.title}>Register Seller</div>
+                <div className={styles.title}>Become A Seller</div>
             </div>
 
             <div className={styles.formContainer}>

@@ -16,7 +16,7 @@ var options = {
   receipt: uuidv4()
 };
  await instance.orders.create(options, function(err, order) {
-  console.log(order.id);
+  console.log(order.id, 'hello ji');
   return res
   .status(200)
   .json(order)

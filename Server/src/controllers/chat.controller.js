@@ -32,6 +32,7 @@ return res
 // this function is to load all messages of the selected / specific chat for both users and sellers
 const handleLoadChats  = asyncHandler(async (req , res) => {
 const chatId = req.params.chatId
+console.log(chatId)
 const  messages = await Message.find({
     chatId : chatId,
 })
@@ -82,8 +83,41 @@ return res
 
 })
 
+
+
+// function to create a new chat between seller and user if chat doesn't exist
+
+const handleFindChat = asyncHandler(async (req , res) => {
+    const currentUserId = req.params.currentUserId
+    const receiverId = req.params.receiverId
+    
+   const existingChat = await Chat.find({
+    participants : { $all : [currentUserId , receiverId] }
+   })
+   if(existingChat) {
+    return res
+    .status(200)
+    .json({
+        status : 200,
+        message : 'existing chat find',
+        chat : existingChat,
+    })
+   }
+
+
+
+
+    return res
+    .status(202)
+    .json({
+        status : 202,
+        message  : 'no chats found',
+    })
+})
+
 export {
     handleLoadChats,
     handleLoadUserChatList,
     handleLoadSellerChatList,
+    handleFindChat,
 }

@@ -184,13 +184,28 @@ Frontend Tasks :
 3) Desgin Home Page 29-10-25 ✅
 4) Desgin Advertisement Creating Page 29-10-25 ✅
 5) Desgin Payment Gateways 30-10-25 Ref Link : ✅
-6) Desgin Chat Features UI 01-11-25 
+6) Desgin Chat Features UI 01-11-25 ✅
 7) Design Advertisement History 02-11-25 ✅
 8) Desgin Profile Settings Page 02-11-25 ✅
 9) Desing Payment History ✅
 10) Desgin Advertisement Decription UI ✅
-11) Design Pay Now Ui 
+11) Design Pay Now Ui ✅
+
 Other Tasks : 
 1) Connect Backend And Frontend
 2) Deploy
 
+
+
+
+
+
+Chats Architecture : 
+
+1) ek route hoga jo seller ke chatList fetch karega✅
+2) ek route hoga jo user ke chatList fetch karega✅
+3) ek route hoga jo ye check karega reciver or currentUser ke beech pehele koi chat he ya nhi or agar he to return kardega nhi h to create kardega and jo ye chat return karega us chat id se hum messages fetch karlenge us chat ke jo bhi old messages honge ✅
+4) ek route messages fetch karega selected chat ke ✅
+
+5) message document me agar senderId == currentUserId he to message right side per kyuki wo hamara messaage he
+6) else message left side show karo because messaage reciver kar hai

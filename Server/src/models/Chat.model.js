@@ -6,6 +6,12 @@ participants : {
     type : [String], // seller or user dono ki id yaha store karna he 
     required : true,
 },
+person1 : {
+    type : String,
+},
+person2 : {
+    type : String,
+}
 } , {timestamps : true})
 
 

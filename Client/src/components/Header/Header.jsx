@@ -3,20 +3,41 @@ import styles from './header.module.css'
 import logo from './ChatGPT Image Nov 11, 2025, 07_40_12 AM.png'
 import chatIcon from './messenger.png'
 import {useNavigate} from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 function Header() {
     const navigate = useNavigate()
+    const loggedInUser = useSelector(state => state.loggedInUser)
+
   function redirectProfile() {
-    navigate('/profile')
+    navigate('/profile-feed')
   }
 
   function redirectPostAd() {
-    navigate('/postAdvertisement')
+    if(loggedInUser.accountType == 'user') navigate('/seller-signup')
+    else navigate('/postAdvertisement')
+  }
+  function redirectchat() {
+    navigate('/chat')
+  }
+  function redirectHome() {
+    navigate('/')
+  }
+  function redirectLogout() {
+  fetch(`http://localhost:5000/${loggedInUser.accountType}/logout` , {
+    method : 'GET',
+    credentials : 'include',
+  })
+  .then((res) => res.json())
+  .then((data) => {
+    if(data.status == 200) navigate(`/${loggedInUser.accountType}-login`)
+  })
   }
     return (
         <>
                 <header className = {styles.header}>
                     
-            <img src={logo} alt="" className = {styles.logo}/>
+            <img src={logo} alt="" className = {styles.logo} onClick = {redirectHome}/>
             <div className = {styles.location}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"
                     role="img">
@@ -53,10 +74,10 @@ function Header() {
                         <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
                     </svg>
                 </button>
-                <button className = {styles.chatBtn} title="Chat">
+                <button className = {styles.chatBtn} title="Chat" onClick= {redirectchat}>
                     <img src={chatIcon} alt=""/>
                 </button>
-                <button className = {styles.logoutBtn}>Logout
+                <button className = {styles.logoutBtn} onClick = {redirectLogout}>Logout
                 </button>
                 <button className = {styles.sellBtn} onClick = {redirectPostAd}>
                     Rent Out Now

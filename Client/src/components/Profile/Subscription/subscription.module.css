@@ -1,184 +1,74 @@
-.profileContainer {
-  width: 100vw;
- 
-  padding: 20px;
-  display: flex;
-  justify-content: space-around;
-  
+/* General Reset and Typography */
+:root {
+    --primary-color: #007bff; /* A nice blue for the main action */
+    --secondary-color: #6c757d; /* Grey for secondary text */
+    --background-color: #f8f9fa; /* Light background */
+    --card-background: #ffffff; /* White card background */
+    --text-color: #343a40; /* Dark text */
+    --shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    --border-radius: 12px;
 }
 
-.profileCard {
-  background: #fff;
-  padding: 30px;
-  border-radius: 18px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-  width: 30%;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.profileTitle {
-  text-align: center;
-  font-size: 24px;
-  font-weight: 600;
-  color: #1e3d8f;
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    /* padding: 40px 20px; */
 }
 
-.memberSince {
-  text-align: center;
-  font-size: 14px;
-  color: #6a6a6a;
-  margin: 5px 0 20px;
+/* Page Header Styling */
+.page-header {
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-.memberSince span {
-  color: #1e3d8f;
-  font-weight: 500;
+.page-header h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
 }
 
-.profileImageSection {
-  text-align: center;
-  margin-bottom: 25px;
+.page-header p {
+    font-size: 1.1em;
+    color: var(--secondary-color);
 }
 
-.profileImageSection img {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  border: 3px solid #dbe6fd;
-  object-fit: cover;
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15vw;
+    height: 90vh;
+    
+    overflow-y: hidden;
+   
 }
 
-.uploadBtn {
-  display: inline-block;
-  margin-top: 10px;
-  background-color: #1e3d8f;
-  color: #fff;
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background 0.3s ease;
+/* Pricing Container (Flexbox Layout) */
+.pricing-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Space between cards */
+     /* Allows cards to wrap on smaller screens */
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.uploadBtn:hover {
-  background-color: #2e52b8;
-}
-
-.profileForm .form-group {
-  margin-bottom: 16px;
-}
-
-.profileForm label {
-  font-weight: 500;
-  color: #555;
-  font-size: 14px;
-}
-
-.profileForm input,
-.profileForm select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #d4d4d4;
-  border-radius: 8px;
-  font-size: 15px;
-  margin-top: 5px;
-  transition: border-color 0.3s ease;
-  background-color: #fff;
-}
-
-.profileForm input:focus,
-.profileForm select:focus {
-  border-color: #1e3d8f;
-  outline: none;
-}
-
-.changePassword {
-  text-align: right;
-  margin-top: 5px;
-}
-
-.passwordBtn {
-  background: none;
-  color: #1e3d8f;
-  border: none;
-  font-weight: 500;
-  cursor: pointer;
-  text-decoration: underline;
-  font-size: 14px;
-}
-
-.passwordBtn:hover {
-  color: #2e52b8;
-}
-
-.btnSection {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 25px;
-}
-
-.btnSection button {
-  width: 48%;
-  padding: 10px 0;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.editBtn {
-  background: #1e3d8f;
-  color: #fff;
-}
-
-.editBtn:hover {
-  background: #2e52b8;
-}
-
-.saveBtn {
-  background: #cfd8f5;
-  color: #555;
-}
-
-.saveBtn:not(:disabled):hover {
-  background: #1e3d8f;
-  color: #fff;
-}
-
-/* Become Seller Section */
-.becomeSeller {
-  text-align: center;
-  margin-top: 25px;
-  padding-top: 15px;
-  border-top: 1px solid #e4e6f0;
-}
-
-.becomeSeller p {
-  color: #555;
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-.sellerBtn {
-  display: inline-block;
-  background-color: #1e3d8f;
-  color: #fff;
-  padding: 10px 18px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: background 0.3s ease;
-}
-
-.sellerBtn:hover {
-  background-color: #2e52b8;
-}
+/* Plan Card Styling */
 .plan-card {
     background-color: var(--card-background);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
-    padding: 30px;
-    height: 50vh;
+    padding: 8px 20px;
+    max-height: 510px;
+    width: 100%;
     max-width: 380px;
     display: flex;
     flex-direction: column;
@@ -229,7 +119,7 @@
 }
 
 .price-value {
-    font-size: 3em;
+    font-size: 2.5em;
     font-weight: 700;
     color: var(--primary-color);
     display: block;

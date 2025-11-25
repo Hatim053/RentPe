@@ -15,7 +15,7 @@ paymentRoutes.post('/validate-transaction' , authenticateSeller , handleValidate
 paymentRoutes.post('/failed-transaction' , handleFailedTransaction)
 // callback helper route for razorpay checkout redirection
 paymentRoutes.post("/payment/payment-success", (req, res) => {
-  res.redirect("http://localhost:5173/payment-success");
+  res.redirect("http://localhost:5173/payment-history");
 })
 
 

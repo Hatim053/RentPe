@@ -6,45 +6,56 @@ function Footer() {
 
     return (
         <>
-          <footer className = {styles.footer}>
-  <div  className = {styles.footerContainer}>
-    <div className = {styles.footerBrand}>
-      <h2 className = {styles.logo}>RentPe</h2>
-      <p>Smart way to rent and earn. Secure. Simple. Reliable.</p>
-    </div>
+ <footer className={styles["footer"]}>
+      <div className={styles["footer-container"]}>
 
-    <div  className = {styles.footerLinks}>
-      <h4>Company</h4>
-      <ul>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Blog</a></li>
-      </ul>
-    </div>
+        <div className={styles["footer-col"]}>
+          <h3 className={styles["footer-logo"]}>RentPe</h3>
+          <p>RentPe is a trusted platform that connects users with quality products and services worldwide.</p>
+          <div className={styles["social-links"]}>
+            <a href="#"><i className="fab fa-facebook"></i></a>
+            <a href="#"><i className="fab fa-instagram"></i></a>
+            <a href="#"><i className="fab fa-twitter"></i></a>
+            <a href="#"><i className="fab fa-linkedin"></i></a>
+          </div>
+        </div>
 
-    <div className = {styles.footerLinks}>
-      <h4>Support</h4>
-      <ul>
-        <li><a href="#">Help Center</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms of Service</a></li>
-      </ul>
-    </div>
+        <div className={styles["footer-col"]}>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
 
-    <div className = {styles.footerSocial}>
-      <h4>Connect</h4>
-      <div className = {styles.socialIcons}>
-        <a href="#"><i class="fab fa-twitter">instagram</i></a>
-        <a href="#"><i class="fab fa-linkedin-in">facebook</i></a>
-        <a href="#"><i class="fab fa-instagram">linkedin</i></a>
+        <div className={styles["footer-col"]}>
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Report a problem</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div className={styles["footer-col"]}>
+          <h4>Subscribe</h4>
+          <p>Stay updated with our latest news and offers.</p>
+          <form className={styles["subscribe-form"]}>
+            <input type="email" placeholder="Enter your email" required />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+
       </div>
-    </div>
-  </div>
 
-  <div className = {styles.footerBottom}>
-    <p>© 2025 RentPe. All rights reserved.</p>
-  </div>
-</footer>
+      <p className={styles["footer-bottom"]}>
+        © 2025 YourBrand — All Rights Reserved.
+      </p>
+    </footer>
         </>
     )
 }
