@@ -8,9 +8,14 @@ import sellerRoutes from './src/routes/seller.routes.js'
 import advertisementRoutes from './src/routes/advertisement.routes.js'
 import paymentRoutes from './src/routes/payment.routes.js'
 import chatRoutes from './src/routes/chat.routes.js'
+import path from 'path'
 
 const app = express()
+app.use(express.static(path.join(__dirname, 'build')));
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 const server = http.createServer(app)
 
