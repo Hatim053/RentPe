@@ -38,7 +38,7 @@ fetch(`${import.meta.env.VITE_SERVER_SIDE_URL}/api/chats/${loggedInUserType}/${l
         <ul  className = {styles['contact-list']}>
 
 
-           { chatList.length == 0 ? <span className = {styles['no-chats']}>no chats yet</span> :
+           { !chatList || chatList.length == 0 ? <span className = {styles['no-chats']}>no chats yet</span> :
             chatList.map((chat) => (
                  <ChatListItem receiverName = {chat.person1==loggedInUser.username ? chat.person2:chat.person1} id = {chat._id} receiverId = {chat.participants[0] == loggedInUserId ? chat.participants[1]:chat.participants[0]} setUpdate = {setUpdate} update = {update} />
             )) 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import styles from "./paymentHistory.module.css"
+import styles from "./paymenthistory.module.css"
 
 const PaymentHistory = () => {
   const [selected, setSelected] = useState(null)

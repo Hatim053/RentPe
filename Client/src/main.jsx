@@ -19,7 +19,7 @@ import ProfileFeed from './components/Profile/ProfileFeed.jsx/ProfileFeed.jsx'
 import Banner from './components/Banner/Banner.jsx'
 import MyFeed from './components/Profile/MyFeed/MyFeed.jsx'
 import ChatFeed from './components/Chat/ChatFeed/ChatFeed.jsx'
-
+import Feed from './components/Feed/Feed.jsx'
 import AdDescription from './components/Advertisement/AdDescription/AdDescription.jsx'
 import PostAdvertisement from './components/Advertisement/PostAdvertisement/PostAdvertisement.jsx'
 

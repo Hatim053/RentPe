@@ -43,6 +43,7 @@ function Header({ setSearchedQuery , setLocation }) {
   .then((res) => res.json())
   .then((data) => {
     if(data.status == 200) navigate(`/${loggedInUser.accountType}-login`)
+      else navigate(`/${loggedInUser.accountType}-login`)
   })
   }
     return (
