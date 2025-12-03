@@ -1,0 +1,23 @@
+{
+  "name": "rentpe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd Client && npm install && npm run build",
+    "start": "cd Server && node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hatim053/RentPe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Hatim053/RentPe/issues"
+  },
+  "homepage": "https://github.com/Hatim053/RentPe#readme"
+}
