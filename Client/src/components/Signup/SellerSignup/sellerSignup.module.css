@@ -19,6 +19,23 @@
   /* background: #1a75ff; */
   color: #fff;
 }
+.bodyBase {
+  display: flex;
+  align-items: center;        /* vertically center */
+  justify-content: flex-end; /* push login to the right side */
+  padding-right: 40px;       /* this adds spacing from the right */
+  min-height: 100vh;
+  background-color: #f8f9fb;
+  font-family: 'Poppins', sans-serif;
+}
+
+.createAdBackground {
+  background-image: url('./ChatGPT Image Nov 12, 2025, 07_53_23 AM.png');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 
 .wrapper {
   max-width: 390px;
@@ -42,6 +59,9 @@
   font-weight: 600;
   text-align: center;
   transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+  color: white;
+  background: -webkit-linear-gradient(right,#003366,#004080,#0059b3,#0073e6);
+  border-radius: 20px;
 }
 
 .slideControls {
@@ -206,6 +226,7 @@ form {
   align-items: center;
   gap: 6px;
   font-size: 14px;
+  overflow: hidden;
   text-transform: capitalize;
   color: #444;
 }

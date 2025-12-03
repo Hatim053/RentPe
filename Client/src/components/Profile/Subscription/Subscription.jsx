@@ -9,7 +9,7 @@ const user = useSelector(state => state.loggedInUser)
     const amount = 299*100;
 
     // Create order by calling the server endpoint
-    const response = await fetch('http://localhost:5000/payment/create-order', {
+    const response = await fetch(`${import.meta.env.VITE_SERVER_SIDE_URL}/payment/create-order`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ const user = useSelector(state => state.loggedInUser)
 
        const body = {...response , amount }
           
-      const validate = await fetch('http://localhost:5000/payment/validate-transaction' , {
+      const validate = await fetch(`${import.meta.env.VITE_SERVER_SIDE_URL}/payment/validate-transaction` , {
         method : 'POST',
         credentials : 'include',
         headers: {
@@ -42,7 +42,7 @@ const user = useSelector(state => state.loggedInUser)
        
       const validateResponse = await validate.json()
             console.log(validateResponse)
-    window.location.href = 'http://localhost:5173/payment-history'  // replace this with the page showing transaction details
+    window.location.href = `${import.meta.env.VITE_CLIENT_SIDE_URL}/profile-feed/payment-history`  // replace this with the page showing transaction details
 
       },
       prefill: {
@@ -60,7 +60,7 @@ const user = useSelector(state => state.loggedInUser)
     rzp.on('payment.failed' , async function(response) {
       const razorpay_payment_id = response.error.metadata.payment_id
       const body = {razorpay_payment_id , amount }
-      const data = await fetch('http://localhost:5000/payment/failed-transaction' , {
+      const data = await fetch(`${import.meta.env.VITE_SERVER_SIDE_URL}/payment/failed-transaction` , {
         method : 'POST',
         headers: {
         'Content-Type': 'application/json'
@@ -71,7 +71,7 @@ const user = useSelector(state => state.loggedInUser)
       const dataResponse = await data.json();
 
      
-window.location.href = 'http://localhost:5173/payment-history'  
+window.location.href = `${import.meta.env.VITE_CLIENT_SIDE_URL}/payment-history` 
     })
 
    rzp.open();

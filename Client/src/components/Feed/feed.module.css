@@ -5,8 +5,16 @@
   grid-gap: 2vw;
   margin-left: 7vw;
   margin-right: 7vw;
+  margin-top: 20px;
 }
 .feed div{
   width: 20vw;
   background-color: #F6F7F2;
+}
+
+.empty {
+  color: black;
+  font-size: large;
+  position: relative;
+  left: 30vw;
 }

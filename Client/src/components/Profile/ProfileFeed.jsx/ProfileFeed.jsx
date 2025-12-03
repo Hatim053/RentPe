@@ -18,7 +18,7 @@ const [activeMenu, setActiveMenu] = useState("account-info")
         <Header />
         <div className={styles['container']}>
          <SideBar activeMenu = {activeMenu} setActiveMenu = {setActiveMenu} loggedInUser = {loggedInUser} />
-         <Outlet />
+        <Outlet />
         </div>
         </>
     )

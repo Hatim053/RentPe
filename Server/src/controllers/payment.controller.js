@@ -4,6 +4,12 @@ import { v4 as uuidv4 } from 'uuid'
 import crypto from 'crypto'
 import { json } from "stream/consumers"
 import Payment from "../models/payment.model.js"
+import 'dotenv/config'
+
+const razorpay = new Razorpay({
+  key_id: process.env.RAZORPAY_API_KEY,
+  key_secret: process.env.RAZORPAY_API_SECRET,
+});
 
 // controller for creating an order
 //[is route per frontend se request karke order id get karna he then frontend se transation initiate karna he]
@@ -16,7 +22,7 @@ var options = {
   receipt: uuidv4()
 };
  await instance.orders.create(options, function(err, order) {
-  console.log(order.id, 'hello ji');
+  console.log(order)
   return res
   .status(200)
   .json(order)
@@ -31,9 +37,9 @@ var options = {
 // [after transation is route per request karna h transaction validate karne ke liye and save karne ke liye]
 const handleValidateAndSaveTransaction = asyncHandler(async (req , res) => {
 
- console.log("Headers:", req.headers);
-console.log("Body type:", typeof req.body);
-console.log("Raw body:", req.body);
+//  console.log("Headers:", req.headers);
+// console.log("Body type:", typeof req.body);
+// console.log("Raw body:", req.body);
 
 const { razorpay_payment_id , razorpay_order_id , razorpay_signature , amount } = req.body
 
@@ -44,8 +50,26 @@ sha.update(`${razorpay_order_id}|${razorpay_payment_id}`)
 const digest = sha.digest('hex')
 
 let status;
-if(digest != razorpay_signature) status = 'pending'
-else status = 'success'
+ if (digest !== razorpay_signature) {
+    console.log("❌ Invalid signature");
+    status = "failed";
+  }
+
+  // Step 2: Capture Payment
+  let captureResponse;
+  try {
+    captureResponse = await razorpay.payments.capture(
+      razorpay_payment_id,
+      amount,
+      "INR"
+    );
+  } catch (err) {
+    console.error("❌ Razorpay capture failed:", err);
+    status = "pending"; // still authorized but not captured
+  }
+
+  // Step 3: Determine final status
+   status = captureResponse?.status === "captured" ? "success" : "pending";
 
 const payment = await Payment.create({
   sellerId : req.seller._id,
@@ -94,8 +118,25 @@ return res
 })
 
 
+const handlleFetchTransactions = asyncHandler(async (req , res) => {
+  const sellerId = req.seller._id
+
+  const transactions = await Payment.find({
+    sellerId : sellerId
+  })
+
+  return res
+  .status(200)
+  .json({
+    status : 200,
+    message : 'Transactional History Fetched Successfully',
+    transactions,
+  })
+})
+
 export  {
     handleGenerateOrderId,
     handleValidateAndSaveTransaction,
     handleFailedTransaction,
+    handlleFetchTransactions,
 }

@@ -4,6 +4,7 @@
     width: 100vw;
     align-items: center;
     justify-content: space-evenly;
+    overflow: hidden;
 }
 .nav a{
   text-decoration: none;

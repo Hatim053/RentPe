@@ -23,7 +23,7 @@ function ChatBox ({ setUpdate , update })  {
    console.log(chatId)
    if(chatId) {
     
-     fetch(`http://localhost:5000/api/messages/${chatId}` , {
+     fetch(`${import.meta.env.VITE_SERVER_SIDE_URL}/api/messages/${chatId}` , {
       method : 'GET', 
       credentials: "include",
       headers: {

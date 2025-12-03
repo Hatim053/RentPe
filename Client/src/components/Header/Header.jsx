@@ -1,14 +1,25 @@
-import React from "react"
+import React, { useRef, useState } from "react"
 import styles from './header.module.css'
 import logo from './ChatGPT Image Nov 11, 2025, 07_40_12 AM.png'
 import chatIcon from './messenger.png'
 import {useNavigate} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-function Header() {
+function Header({ setSearchedQuery , setLocation }) {
+
+    const searchRef = useRef(null)
+    const locationRef = useRef(null)
+
+  function searchAdvertisements() {
+
+    setLocation(locationRef.current.value)
+    setSearchedQuery(searchRef.current.value)
+ 
+  }
+
     const navigate = useNavigate()
     const loggedInUser = useSelector(state => state.loggedInUser)
-
+    
   function redirectProfile() {
     navigate('/profile-feed')
   }
@@ -21,10 +32,11 @@ function Header() {
     navigate('/chat')
   }
   function redirectHome() {
+    console.log('clicked')
     navigate('/')
   }
   function redirectLogout() {
-  fetch(`http://localhost:5000/${loggedInUser.accountType}/logout` , {
+  fetch(`${import.meta.env.VITE_SERVER_SIDE_URL}/${loggedInUser.accountType}/logout` , {
     method : 'GET',
     credentials : 'include',
   })
@@ -48,12 +60,12 @@ function Header() {
                         <line x1="16.5" y1="16.5" x2="22" y2="22" />
                     </g>
                 </svg>
-                <input type="text" value="Mumbai"/>
+                <input ref = {locationRef} type="text" placeholder = {`ex : "Bhopal"`}/>
 
             </div>
             <div className = {styles.searchBar}>
-                <input type="text" placeholder="Search"/>
-                <button className ={styles.svg}>
+                <input ref = {searchRef} type="text" placeholder={`search for "furniture"`}/>
+                <button className ={styles.svg} onClick = {searchAdvertisements}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
                         aria-hidden="true" role="img">
                         <title>Search</title>

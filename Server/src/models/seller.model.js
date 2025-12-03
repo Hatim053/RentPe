@@ -43,10 +43,6 @@ const sellerSchema = new mongoose.Schema({
   enum: ['furniture' , 'utensils' , 'properties' , 'electronics' , 'lighting' , 'catering' , 'tent' , 'decoration'],
   required : true,
 }],
-    lastPayment : {
-        type : Date,
-        default : null,
-    },
     accountType : {
         type : String,
         enum : ['seller' , 'user'],

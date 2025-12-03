@@ -5,7 +5,17 @@ import { useNavigate } from "react-router-dom"
 import { addUser } from '../../../user/userSlice.js'
 
 function SellerLogin () {
+  useEffect(() => {
+   
+    document.body.classList.add(styles.bodyBase);
+    document.body.classList.add(styles.createAdBackground);
 
+ 
+    return () => {
+      document.body.classList.remove(styles.bodyBase);
+      document.body.classList.remove(styles.createAdBackground);
+    };
+  }, []);
 
 const emailRef = useRef(null)
 const passwordRef = useRef(null)
@@ -18,7 +28,7 @@ const dispatch = useDispatch()
 function handleLogin() {
 return async(e) => {
 e.preventDefault()
-  let response = await fetch('http://localhost:5000/seller/login' , {
+  let response = await fetch(`${import.meta.env.VITE_SERVER_SIDE_URL}/seller/login` , {
     method : 'POST',
     headers: {
     "Content-Type": "application/json",
@@ -32,7 +42,7 @@ e.preventDefault()
   let data = await response.json()
    if(data.status == 200) {
     dispatch(addUser(data.seller))
-    navigate('/home')
+    navigate('/')
   } 
   if(data.status == 404) {
     redirectSignup()
@@ -76,7 +86,7 @@ function redirectSignup() {
               <input type="submit" value="Login"/>
             </div>
             <div className={styles.signupLink}>
-              Not a member? <a onClick= {redirectSignup}>Signup now</a>
+              are you a user? <a onClick= {() => navigate('/user-login')}>user login</a>
             </div>
           </form>
         </div>

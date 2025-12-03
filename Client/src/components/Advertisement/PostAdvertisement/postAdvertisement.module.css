@@ -121,9 +121,9 @@ html {
     border-radius: 8px;
     cursor: pointer;
     transition: 0.25s ease;
-    position: relative;
-    right: 53vw;
-    bottom: 5vh;
+    position: absolute;
+    right: 90vw;
+    bottom: 90vh;
 
 }
 

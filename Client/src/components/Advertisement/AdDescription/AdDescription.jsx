@@ -10,11 +10,12 @@ function AdDescription() {
   const dispatch = useDispatch()
   const [mainImage, setMainImage] = useState(ad.images[0])
   const currentUserId = useSelector(state => state.loggedInUser._id)
+
   console.log(ad)
 function redirectChat() {
   
   // fetching chatId
-  fetch(`http://localhost:5000/api/chat/find/${currentUserId}/${ad.sellerId}` , {
+  fetch(`${import.meta.env.VITE_SERVER_SIDE_URL}/api/chat/find/${currentUserId}/${ad.sellerId}` , {
     method : 'GET',
     headers: {
     "Content-Type": "application/json",
@@ -41,6 +42,17 @@ function redirectChat() {
   sellerName : ad.sellerUsername,
    })
   navigate('/chat')
+}
+
+
+async function handleDeleteAd() {
+  let response = await fetch(`${import.meta.env.VITE_SERVER_SIDE_URL}/ad/delete-ad/${ad._id}` , {
+    method : 'GET',
+    credentials : 'include',
+  })
+  let res = await response.json()
+  if(res.status == 200) navigate('/profile-feed/my-advertisements')
+
 }
   return (
     <>
@@ -83,7 +95,8 @@ function redirectChat() {
             </div>
           </div>
 
-          <button className={styles.chatBtn} onClick = {redirectChat}>Chat with Seller</button>
+          {ad.sellerId == currentUserId ? <button className={styles.chatBtn} onClick = {redirectChat}>Chat with Seller</button> :
+          <button className={styles.chatBtn} onClick = {handleDeleteAd}>Delete Advertisement</button>}
         </div>
       </div>
     </>

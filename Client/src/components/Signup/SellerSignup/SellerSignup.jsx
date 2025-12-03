@@ -1,8 +1,18 @@
-import { React , useState , useRef } from "react"
+import { React , useState , useRef , useEffect } from "react"
 import styles from "./sellerSignup.module.css"
 import {useNavigate} from 'react-router-dom'
 function SellerSignup() {
+  useEffect(() => {
+   
+    document.body.classList.add(styles.bodyBase);
+    document.body.classList.add(styles.createAdBackground);
 
+ 
+    return () => {
+      document.body.classList.remove(styles.bodyBase);
+      document.body.classList.remove(styles.createAdBackground);
+    };
+  }, []);
 const [selectedCategories, setSelectedCategories] = useState([])
 const navigate = useNavigate()
 const nameRef = useRef(null)
@@ -22,6 +32,7 @@ const cityRef = useRef(null)
     "catering",
     "decoration",
     "tent",
+    "photography",
   ]
 
   const handleCheckboxChange = (e) => {
@@ -38,7 +49,7 @@ const cityRef = useRef(null)
    return async (e) => {
     e.preventDefault()
    
-    const response = await fetch('http://localhost:5000/seller/signup' , {
+    const response = await fetch(`${import.meta.env.VITE_SERVER_SIDE_URL}/seller/signup` , {
     method : 'POST',
     headers : {
     "Content-Type": "application/json",

@@ -3,7 +3,7 @@ import asyncHandler from '../utilities/asyncHandler.js'
 
 const AuthorizedSeller = function (req, res, next) {
     if (req.user) {
-        return res.redirect() // redirect to create a seller account first
+        return res.redirect(`${process.env.CLIENT_SIDE_URL}/seller-signup`) // redirect to create a seller account first
     }
     next()
 }

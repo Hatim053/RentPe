@@ -8,6 +8,7 @@
     position: sticky;
     top: 0;
     z-index: 100;
+    overflow: hidden;
 }
 .logo{
     width: 120px;
@@ -17,6 +18,7 @@
     border: 2px solid black;
     height: 6vh;
     width: 16%;
+    overflow: hidden;
     display: flex;
     align-items: center;
     border-radius: 7px;
@@ -46,6 +48,7 @@
     align-items: center;
     width: 35%;
     border-radius: 7px;
+    overflow: hidden;
 }
 .controlls{
     display: flex;
@@ -53,6 +56,7 @@
     height: 6vh;
     width: 30%;
     justify-content: space-between;
+    overflow: hidden;
 }
 
 .svg{
@@ -83,6 +87,7 @@
   font-size: 15px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+  
 }
 
 .sellBtn:hover {
@@ -152,3 +157,5 @@
   stroke: #0056b3;
   transform: scale(1.1);
 }
+
+

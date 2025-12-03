@@ -29,7 +29,7 @@ function AccountInfo() {
     const formData = new FormData(e.target)
     
    try {
-    const response = await fetch(`http://localhost:5000/${loggedInUser.accountType}/update` , {
+    const response = await fetch(`${import.meta.env.VITE_SERVER_SIDE_URL}/${loggedInUser.accountType}/update` , {
      method : 'POST',
      credentials: "include",
      body : formData,

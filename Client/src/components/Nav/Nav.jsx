@@ -2,20 +2,33 @@ import React from "react"
 import styles from './nav.module.css'
 
 
-function Nav() {
-
+function Nav({ setSearchedQuery }) {
 
 
     return (
         <>
                 <nav className = {styles.nav}>
-            <a href="">All Categories</a>
-            <a href="">Furniture</a>
-            <a href="">Properties And Venue's</a>
-            <a href="">Electronics & Applainces</a>
-            <a href="">Lighting & Decor</a>
-            <a href="">Catering & serving</a>
-            <a href="">Events And More</a>
+            <a href="" onClick = {(e) => {
+                setSearchedQuery(e.target.innerHtml)
+            }}>OUR-SERVICES</a>
+            <a href="" onClick = {(e) => {
+                setSearchedQuery(e.target.innerHtml)
+            }}>furniture</a>
+            <a href="" onClick = {(e) => {
+                setSearchedQuery('properties & spaces')
+            }}>properties & spaces</a>
+            <a href="" onClick = {(e) => {
+                setSearchedQuery(e.target.innerHtml)
+            }}>electronics & applainces</a>
+            <a href="" onClick = {(e) => {
+                setSearchedQuery('lighting & decoration')
+            }}>Lighting & Decor</a>
+            <a href="" onClick = {(e) => {
+                setSearchedQuery(e.target.value)
+            }}>catering  & serving</a>
+            <a href="" onClick = {(e) => {
+                setSearchedQuery('other services')
+            }}>Events And More</a>
         </nav>
         </>
     )

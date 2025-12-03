@@ -209,3 +209,10 @@ Chats Architecture :
 
 5) message document me agar senderId == currentUserId he to message right side per kyuki wo hamara messaage he
 6) else message left side show karo because messaage reciver kar hai
+
+
+
+
+
+
+

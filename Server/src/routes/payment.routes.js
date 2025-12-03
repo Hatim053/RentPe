@@ -5,6 +5,7 @@ import {
        handleGenerateOrderId,
        handleValidateAndSaveTransaction,
        handleFailedTransaction,
+       handlleFetchTransactions,
        } from '../controllers/payment.controller.js'
 
 
@@ -13,9 +14,11 @@ const paymentRoutes = Router();
 paymentRoutes.post('/create-order' , authenticateSeller ,  handleGenerateOrderId)
 paymentRoutes.post('/validate-transaction' , authenticateSeller , handleValidateAndSaveTransaction)
 paymentRoutes.post('/failed-transaction' , handleFailedTransaction)
+paymentRoutes.get('/fetch-transactions' , authenticateSeller , handlleFetchTransactions)
+
 // callback helper route for razorpay checkout redirection
 paymentRoutes.post("/payment/payment-success", (req, res) => {
-  res.redirect("http://localhost:5173/payment-history");
+  res.redirect(`${process.env.CLIENT_SIDE_URL}/profile-feed/payment-history`);
 })
 
 

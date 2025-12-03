@@ -17,7 +17,7 @@ import AccountInfo from './components/Profile/AccountInfo/AccountInfo.jsx'
 import Sidebar from './components/Profile/Sidebar/Sidebar.jsx'
 import ProfileFeed from './components/Profile/ProfileFeed.jsx/ProfileFeed.jsx'
 import Banner from './components/Banner/Banner.jsx'
-
+import MyFeed from './components/Profile/MyFeed/MyFeed.jsx'
 import ChatFeed from './components/Chat/ChatFeed/ChatFeed.jsx'
 
 import AdDescription from './components/Advertisement/AdDescription/AdDescription.jsx'
@@ -27,12 +27,19 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './app/Store.js'
 
+
 // payment successfull hone ke baad payment history wale page per re-direct karana he
 // jitne bhi form paste kiya he sabme encType or click event ko onClick karna h
 const router = createBrowserRouter([
   {
-    path: '/home',
+    path: '/',
     element: <App />,
+    children : [
+      {
+        index : true,
+        element : <Banner />,
+      },
+    ]
   },
   {
     path: '/chat',
@@ -57,7 +64,11 @@ const router = createBrowserRouter([
       {
         path : '/profile-feed/payment-history',
         element : <PaymentHistory />,
-      }
+      },
+      {
+        path : '/profile-feed/my-advertisements',
+        element : <MyFeed />,
+      },
     ]
   },
   {

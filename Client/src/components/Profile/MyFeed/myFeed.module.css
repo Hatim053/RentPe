@@ -1,0 +1,38 @@
+.my-feed{
+  width: 66vw;
+  display: grid;
+  grid-template-columns: repeat(3 , 20vw);
+  grid-auto-rows: min-content; 
+  grid-gap: 2vw;
+  height: 83vh;
+  overflow-y: scroll;
+overflow-x: hidden;
+ 
+}
+
+ .wrapper{
+  border: 4px solid #007bff;
+  border-radius: 8px;
+    margin-left: 7vw;
+  margin-right: 7vw;
+  margin-top: 20px;
+  height: 83vh;
+   padding: 10px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+}
+
+.my-feed div{
+  width: 20vw;
+  background-color: #F6F7F2;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.empty {
+  color: black;
+  font-size: large;
+  position: relative;
+  left: 30vw;
+}

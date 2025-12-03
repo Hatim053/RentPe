@@ -1,7 +1,7 @@
 import React from "react"
 import styles from './advertisementCard.module.css'
 
-function AdvertisementCard({ad , handleDescription}) {
+function AdvertisementCard({ad , handleDescription , }) {
 
 
     return (
@@ -14,7 +14,7 @@ function AdvertisementCard({ad , handleDescription}) {
             </div>
             <div className = {styles.price}>{ad.price}</div>
             <div className = {styles.title}>{ad.title}</div>
-            <div className = {styles.text}><span class="area">{ad.city}</span><span class="date">Today</span></div>
+            <div className = {styles.text}><span class="area">{ad.city}</span><span class="date">{new Date(ad.createdAt).toDateString().substring(4)}</span></div>
           </div>
         </>
     )

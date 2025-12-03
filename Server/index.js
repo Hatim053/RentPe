@@ -15,7 +15,7 @@ const port = process.env.PORT
 // socket logic part
 const io = new Server(server , {
     cors : {
-        origin : 'http://localhost:5173',
+        origin : `${process.env.CLIENT_SIDE_URL}`,
         methods : ['GET' , 'POST'],
         credentials : true,
     }
@@ -24,7 +24,7 @@ const io = new Server(server , {
 let onlineUsers = [] // for storing users ki databaseId aur socketId in key value pair
 
 io.on('connection' , (socket) => {
-console.log(onlineUsers)
+console.log(onlineUsers , 'socket users')
  // When a user sends a message
 socket.on('registerUser' , (userId) => {
     onlineUsers[userId] = socket.id

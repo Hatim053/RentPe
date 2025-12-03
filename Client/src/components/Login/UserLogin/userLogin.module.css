@@ -10,14 +10,31 @@
 
 /* Use a wrapper to center login form */
 .loginWrapper {
-  margin-top: 15vh;
-  height: 70vh;
   display: flex;
-  width: 50vw;
-  justify-content: center;
   flex-direction: column;
-  align-content: center;
-  background: #ffffff;
+  width: 50vw;
+  max-width: 400px;
+  gap: 20px;
+  justify-content: center;
+}
+
+
+.bodyBase {
+  display: flex;
+  align-items: center;        /* vertically center */
+  justify-content: flex-end; /* push login to the right side */
+  padding-right: 40px;       /* this adds spacing from the right */
+  min-height: 100vh;
+  background-color: #f8f9fb;
+  font-family: 'Poppins', sans-serif;
+}
+
+.createAdBackground {
+  background-image: url('./ChatGPT Image Nov 12, 2025, 07_53_23 AM.png');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 
@@ -197,4 +214,14 @@ form {
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
+}
+@media (max-width: 768px) {
+  .bodyBase {
+    justify-content: center;
+    padding-right: 0;
+  }
+
+  .loginWrapper {
+    width: 90vw;
+  }
 }

@@ -1,11 +1,21 @@
-import React, { useRef, useState } from "react"
+import React, { useRef,useEffect , useState } from "react"
 import styles from "./userLogin.module.css"
 import { useDispatch , useSelector } from 'react-redux'
 import { useNavigate } from "react-router-dom"
 import { addUser } from '../../../user/userSlice.js'
 
 function UserLogin () {
+  useEffect(() => {
+   
+    document.body.classList.add(styles.bodyBase);
+    document.body.classList.add(styles.createAdBackground);
 
+ 
+    return () => {
+      document.body.classList.remove(styles.bodyBase);
+      document.body.classList.remove(styles.createAdBackground);
+    };
+  }, []);
 const dispatch = useDispatch()
 
 const emailRef = useRef(null)
@@ -16,7 +26,7 @@ const navigate = useNavigate()
 function handleLogin() {
 return async(e) => {
 e.preventDefault()
-  let response = await fetch('http://localhost:5000/user/login' , {
+  let response = await fetch(`${import.meta.env.VITE_SERVER_SIDE_URL}/user/login` , {
     method : 'POST',
     headers: {
     "Content-Type": "application/json",
@@ -31,7 +41,7 @@ e.preventDefault()
    if(data.status == 201) {
     console.log('redirect kardo')
     dispatch(addUser(data.user))
-    navigate('/home')
+    navigate('/')
   } 
   if(data.status == 401) redirectSignup()
 }  
@@ -71,8 +81,8 @@ function redirectSignup() {
               <div className={styles.btnLayer}></div>
               <input type="submit" value="Login"/>
             </div>
-            <div className={styles.signupLink}>
-              Not a member? <button href="#">Signup now</button>
+            <div className={styles.signupLink}>are you a seller? 
+             <a href="" onClick = {() => navigate('/seller-login')}> Seller login</a>
             </div>
           </form>
         </div>

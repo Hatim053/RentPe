@@ -22,7 +22,7 @@ app.use(cookieParser())
 app.use(express.static('public'))
 app.use(cors(
     {
-        origin : 'http://localhost:5173',
+        origin : `${process.env.CLIENT_SIDE_URL}`,
         methods : ['GET' , 'POST'],
         credentials : true,
     }

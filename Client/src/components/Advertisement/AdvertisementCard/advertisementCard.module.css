@@ -1,54 +1,87 @@
-  .advertisement{
+.advertisement {
   width: 20vw;
+  position: relative; /* Needed for icon positioning */
   display: flex;
-  border: 2px solid black;
   flex-direction: column;
-  align-content: center;
   justify-content: center;
   gap: 2px;
-  overflow: hidden;
-  padding-top: 7px;
-  padding-bottom: 7px;
+  padding: 7px 0;
+  border: 2px solid black;
   border-radius: 5px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 
- }
- .advertisement .text{
+.advertisement:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Delete Icon Styling */
+.deleteIcon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #ffffffd8;
+  border: 1px solid #d1d1d1;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px 6px;
+  border-radius: 50%;
+  transition: 0.2s ease-in-out;
+  opacity: 0;
+  pointer-events: none; /* prevent accidental clicks when hidden */
+}
+
+/* Show icon only on hover for clean UI */
+.advertisement:hover .deleteIcon {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Hover effect on icon */
+.deleteIcon:hover {
+  background: #ff4d4d;
+  color: white;
+  border-color: #ff4d4d;
+  transform: scale(1.1);
+}
+
+/* ----- Existing Styling Below (Unchanged) ----- */
+
+.advertisement .text {
   display: flex;
-  align-items:  center;
+  align-items: center;
   justify-content: space-between;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding: 0 12px;
   width: 95%;
- }
- .advertisement .price , .title{
-  display:  flex;
+}
+
+.advertisement .price,
+.title {
+  display: flex;
   align-items: center;
   padding-left: 12px;
   width: 95%;
- }
- .advertisement .price{
+}
+
+.advertisement .price {
   font-weight: 900;
   font-size: large;
- }
+}
 
 .advertisement .img {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: 20vw;
   height: 16vw;
-  overflow: hidden;      /* Prevent overflow */
+  overflow: hidden;
   border-radius: 5px;
 }
 
 .advertisement .img img {
   width: 90%;
   height: 100%;
-  object-fit: cover;     /* Ensures consistent crop and size */
+  object-fit: cover;
 }
-
-
- .advertisement:hover {
-  transform: scale(1.05); 
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
- }

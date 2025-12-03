@@ -28,7 +28,7 @@ function PostAdvertisement() {
       e.preventDefault()
     
       const formData = new FormData(e.target)
-      let response = await fetch('http://localhost:5000/ad/create' , {
+      let response = await fetch(`${import.meta.env.VITE_SERVER_SIDE_URL}/ad/create` , {
         method : 'POST',
         credentials: "include",
         body : formData,
@@ -41,6 +41,7 @@ function PostAdvertisement() {
       if(data.status == 201)  navigate('/') // create this route
       if(data.status == 405) navigate(data.redirectUrl)
       if(data.status == 406) console.log('token expired')
+      if(data.status == 407) navigate('/profile-feed/subscription')
       // console.log(data.status)
      }
 
@@ -77,7 +78,7 @@ function PostAdvertisement() {
       </div>
       <div className = {styles.formGroup}>
         <label htmlFor="price">Price</label>
-        <input   type="text" id="price" name="price" placeholder="Enter your price" required />
+        <input   type="text" id="price" name="price" placeholder="ex : 1000/perday" required />
       </div>
       <div className = {styles.formGroup}>
         <label htmlFor="city">City</label>

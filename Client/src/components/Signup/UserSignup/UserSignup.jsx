@@ -1,11 +1,22 @@
 import React from "react"
 import styles from "./userSignup.module.css"
-import { useRef , useState } from "react"
+import { useRef , useState , useEffect } from "react"
 import { useNavigate } from 'react-router-dom'
 
 
 
 function UserSignup() {
+    useEffect(() => {
+   
+    document.body.classList.add(styles.bodyBase);
+    document.body.classList.add(styles.createAdBackground);
+
+ 
+    return () => {
+      document.body.classList.remove(styles.bodyBase);
+      document.body.classList.remove(styles.createAdBackground);
+    };
+  }, []);
 const [showPopup, setShowPopup] = useState(false);
 const usernameRef = useRef(null)
 const emailRef = useRef(null)
@@ -13,10 +24,10 @@ const passwordRef = useRef(null)
 const navigate = useNavigate()
 
  function handleSignup() {
-  
+  console.log(import.meta.env.SERVER_SIDE_URL)
   return async(e) => {
     e.preventDefault()
-  let response = await fetch('http://localhost:5000/user/signup' , {
+  let response = await fetch(`${import.meta.env.VITE_SERVER_SIDE_URL}/user/signup` , {
     method : 'POST',
     headers: {
     "Content-Type": "application/json",
