@@ -1,5 +1,5 @@
 import React from "react"
-import styles from './adDescriptionSkeleton.module.css'
+import styles from '../styles/adDescriptionSkeleton.module.css'
 
 function AdDescriptionSkeleton  () {
   return (

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
-import styles from './banner.module.css'
-import { imgData } from "./Images/imageData"
+import styles from '../../styles/./banner.module.css'
+import { imgData } from '../../utitlies/utilities.js'
 
 
 function Banner() {

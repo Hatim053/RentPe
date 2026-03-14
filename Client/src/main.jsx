@@ -1,29 +1,25 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-
+import './styles/index.css'
 import App from './App.jsx'
-
-import UserSignup from './components/Signup/UserSignup/UserSignup.jsx'
-import UserLogin from './components/Login/UserLogin/UserLogin.jsx'
-import SellerSignup from './components/Signup/SellerSignup/SellerSignup.jsx'
-import SellerLogin from './components/Login/SellerLogin/SellerLogin.jsx'
-import Subscription from './components/Profile/Subscription/Subscription.jsx'
-import PaymentHistory from './components/Profile/PaymentHistory/PaymentHistory.jsx'
-import AccountInfo from './components/Profile/AccountInfo/AccountInfo.jsx'
-import ProfileFeed from './components/Profile/ProfileFeed.jsx/ProfileFeed.jsx'
-import MyFeed from './components/Profile/MyFeed/MyFeed.jsx'
-import ChatFeed from './components/Chat/ChatFeed/ChatFeed.jsx'
-import AdDescription from './components/Advertisement/AdDescription/AdDescription.jsx'
-import PostAdvertisement from './components/Advertisement/PostAdvertisement/PostAdvertisement.jsx'
-
+import UserSignup from './components/Signup/UserSignup.jsx'
+import UserLogin from './components/Login/UserLogin.jsx'
+import SellerSignup from './components/Signup/SellerSignup.jsx'
+import SellerLogin from './components/Login/SellerLogin.jsx'
+import Subscription from './components/Profile/Subscription.jsx'
+import PaymentHistory from './components/Profile/PaymentHistory.jsx'
+import AccountInfo from './components/Profile/AccountInfo.jsx'
+import ProfileFeed from './components/Profile/ProfileFeed.jsx'
+import MyFeed from './components/Profile/MyFeed.jsx'
+import ChatFeed from './components/Chat/ChatFeed.jsx'
+import AdDescription from './screens/AdDescription.jsx'
+import PostAdvertisement from './components/Advertisement/PostAdvertisement.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { store } from './app/Store.js'
+import { store } from './ReduxStore/Store.js'
+import ProductFeed from './screens/ProductFeed.jsx'
 
 
-// payment successfull hone ke baad payment history wale page per re-direct karana he
-// jitne bhi form paste kiya he sabme encType or click event ko onClick karna h
 const router = createBrowserRouter([
   {
     path: '/',
@@ -87,12 +83,16 @@ const router = createBrowserRouter([
     path: '/postAdvertisement',
     element: <PostAdvertisement />,
   },
+  {
+    path : '/products-feed',
+    element : <ProductFeed />,
+  }
 ])
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
-  </StrictMode>,
+
 )
