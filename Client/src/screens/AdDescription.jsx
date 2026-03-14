@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import styles from "../styles/AdDescription.module.css"
+import styles from '../styles/adDescription.module.css'
 import { useSelector, useDispatch } from "react-redux"
 import { addReceiver } from "../ReduxStore/receiverSlice.js"
 import { addChatId } from "../ReduxStore/chatSlice.js"
