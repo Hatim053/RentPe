@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import styles from '../../styles/feed.module.css';
 import AdvertisementCard from '../Advertisement/AdvertisementCard.jsx';
-
+import FeedSkeleton from '../../SkeletonUi/FeedSkeleton.jsx';
 
 
 function Feed({Ads}) {
@@ -9,7 +9,9 @@ function Feed({Ads}) {
     const limit = 12;
     const startIdx = (page-1)*limit;
     const endIdx = startIdx + limit;
-    
+    if(!Ads) {
+  return <FeedSkeleton />
+}
     return (
         <>
             <div className={styles.feed}>
