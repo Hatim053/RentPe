@@ -2,7 +2,7 @@ import  { useEffect, useState } from "react"
 import styles from '../../styles/myFeed.module.css'
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
-import { addAd } from '../../ReduxStore/selectedAdSlice.js'
+import { addDataById } from '../../ReduxStore/adSlice.js'
 import AdvertisementCard from '../Advertisement/AdvertisementCard.jsx'
 
 function MyFeed() {
@@ -13,8 +13,8 @@ function MyFeed() {
     const [sellerAds, setSellerAds] = useState([])
 
     function handleDescription(advertisement) {
-        dispatch(addAd(advertisement))
-        navigate('/adDescription')
+        dispatch(addDataById(advertisement))
+        navigate(`/adDescription/${advertisement?.id}`);
     }
 
     async function fetchUserAds() {

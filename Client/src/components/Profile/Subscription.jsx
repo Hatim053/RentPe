@@ -3,7 +3,7 @@ import styles from '../../styles/subscription.module.css'
 import { useSelector } from "react-redux"
 
 function Subscription() {
-    const user = useSelector(state => state.loggedInUser)
+    const user = useSelector(state => state.loggedInUser.loggedInUserData)
 
     async function payNow() {
         const amount = 299 * 100;

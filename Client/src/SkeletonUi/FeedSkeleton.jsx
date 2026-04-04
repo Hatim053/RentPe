@@ -7,7 +7,7 @@ function FeedSkeleton() {
         <div className={styles.feed}>
   {
     
-      cards.map(() => ( <div className={styles.advertisementShimmer}>
+      cards.map((_ , idx) => ( <div key={idx} className={styles.advertisementShimmer}>
   <div className={styles.imgShimmer}></div>
 
   <div className={styles.priceShimmer}></div>

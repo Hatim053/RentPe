@@ -2,7 +2,7 @@ import  { useEffect, useRef } from "react"
 import styles from "../../styles/sellerLogin.module.css"
 import { useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom"
-import { addUser } from '../../ReduxStore/userSlice.js'
+import { addLoggedInUser } from '../../ReduxStore/userSlice.js'
 import useLogin from '../../hooks/useLogin.js'
 
 function SellerLogin() {
@@ -26,7 +26,7 @@ function SellerLogin() {
     console.log(response)
     if (!response) return;
     if (response.status == 200) {
-      dispatch(addUser(response.seller))
+      dispatch(addLoggedInUser(response.seller))
       navigate('/')
     }
     if (response.status == 404) {

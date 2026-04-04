@@ -76,7 +76,7 @@ const router = createBrowserRouter([
     element: <SellerLogin />
   },
   {
-    path: '/AdDescription',
+    path: '/AdDescription/:advertisementId',
     element: <AdDescription />,
   },
   {

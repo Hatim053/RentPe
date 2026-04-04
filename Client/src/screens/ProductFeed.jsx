@@ -8,11 +8,11 @@ import { useSelector , useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { getSearchedAdvertisements } from '../utitlies/utilities.js'
 import { isNextPageAvailable } from '../ReduxStore/paginationSlice.js'
-import { addSearchedAdsData } from '../ReduxStore/searchedAdsSlice.js'
+import { addSearchedAdsData } from '../ReduxStore/adSlice.js'
 
 function ProductFeed() {
-    const searchedAds = useSelector(state => state.searchedAds);
-    const currentLocation = useSelector(state => state.currentLocation); 
+    const searchedAdsDataMap = useSelector(state => state.advertisement.searchedAdsDataMap);
+    const currentLocation = useSelector(state => state.loggedInUser.loggedInUserLocationData); 
     const page = useSelector(state => state.pagination.page);
     const firstLoad = useRef(true);
     const dispatch = useDispatch();
@@ -22,14 +22,16 @@ function ProductFeed() {
             firstLoad.current = false;
             return;
         }
-        getSearchedAdvertisements(searchedAds[0].serviceType , currentLocation , page , searchedAds , addSearchedAdsData , isNextPageAvailable , dispatch);
+        if(!searchedAdsDataMap[page]) { // checking for catched data first before making an API call
+         getSearchedAdvertisements(searchedAdsDataMap[page][0].serviceType , currentLocation , page , searchedAdsDataMap , addSearchedAdsData , isNextPageAvailable , dispatch);  
+        }
         
      } , [page])
     return (
         <>
             <Header />
             <SearchSuggestions />
-            <Feed Ads = {searchedAds} />
+            <Feed Ads = {searchedAdsDataMap[page]} />
             <Pagination />
             <Footer />
         </>

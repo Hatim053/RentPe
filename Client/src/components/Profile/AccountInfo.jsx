@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react"
 import styles from "../../styles/accountInfo.module.css"
 import { useSelector, useDispatch } from "react-redux"
-import { addUser } from '../../ReduxStore/userSlice.js'
+import { addLoggedInUser } from '../../ReduxStore/userSlice.js'
 
 function AccountInfo() {
   const [isEditing, setIsEditing] = useState(false);
 
   const [profile, setProfile] = useState({});
   const dispatch = useDispatch()
-  const loggedInUser = useSelector(state => state.loggedInUser)
+  const loggedInUser = useSelector(state => state.loggedInUser.loggedInUserData)
 
-  const user = useSelector(state => state?.loggedInUser);
   useEffect(() => {
-    if (!user) return;
-    setProfile(user)
-  }, [user])
+    if (!loggedInUser) return;
+    setProfile(loggedInUser)
+  }, [loggedInUser])
 
   const handleChange = (e) => {
     setProfile({ ...profile, [e.target.name]: e.target.value });
@@ -36,7 +35,7 @@ function AccountInfo() {
       console.log(data)
       if (data.status == 200) {
         // console.log(data.user)
-        dispatch(addUser(data))
+        dispatch(addLoggedInUser(data))
         setProfile(data.user)
       }
     } catch (error) {

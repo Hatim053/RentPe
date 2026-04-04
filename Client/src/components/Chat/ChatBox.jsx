@@ -7,7 +7,7 @@ function ChatBox ({ setUpdate , update })  {
   const [chat, setChat] = useState([])
   const messageRef = useRef(null)
   const chatId = useSelector(state => state.chatId)
-  const currentUser = useSelector(state => state.loggedInUser)
+  const currentUser = useSelector(state => state.loggedInUser.loggedInUserData)
   const currentUserId = currentUser._id
   const currentUserType = currentUser.accountType
   const receiver = useSelector(state => state.receiver)

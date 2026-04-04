@@ -1,18 +1,18 @@
 import styles from "../../styles/header.module.css"
 import { useSelector , useDispatch } from "react-redux"
-import { removeSuggestionsData } from '../../ReduxStore/suggestionsSlice.js'
+import { removeSuggestionsData } from '../../ReduxStore/adSlice.js'
 import { getSearchedAdvertisements } from '../../utitlies/utilities.js'
-import { addSearchedAdsData } from '../../ReduxStore/searchedAdsSlice.js'
+import { addSearchedAdsData } from '../../ReduxStore/adSlice.js'
 import { useNavigate } from "react-router-dom"
 import { updateToInitialPage } from '../../ReduxStore/paginationSlice.js'
 import { isNextPageAvailable } from '../../ReduxStore/paginationSlice.js'
 
 function SearchSuggestions() {
-   const searchedAds  = useSelector(state => state.searchedAds);
-  const suggestions = useSelector(state => state.suggestions);
-  const currentLocation = useSelector(state => state.currentLocation);
+ 
+  const searchedAds  = useSelector(state => state.advertisement.searchedAdsDataMap);
+  const suggestions = useSelector(state => state.advertisement.suggestionAdData);
+  const currentLocation = useSelector(state => state.loggedInUser.loggedInUserLocationData);
   const page = useSelector(state => state.pagination.page);
-
   // console.log('suggestion data in suggestion component' , suggestions)
   const dispatch = useDispatch();
   const navigate = useNavigate();

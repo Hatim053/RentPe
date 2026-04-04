@@ -15,7 +15,6 @@ function Feed({Ads}) {
     return (
         <>
             <div className={styles.feed}>
-               
              {! Ads && <span className = {styles['empty']}>No Service Found For Your Area</span> } 
              { Ads && Ads.slice(startIdx , endIdx).map((ad) => {
               return  <AdvertisementCard ad = {ad} />

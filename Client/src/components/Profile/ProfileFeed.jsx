@@ -7,7 +7,7 @@ import Header from "../Header/Header.jsx"
 
 function ProfileFeed() {
 const [activeMenu, setActiveMenu] = useState("account-info")
-  const loggedInUser = useSelector(state => state.loggedInUser)
+  const loggedInUser = useSelector(state => state.loggedInUser.loggedInUserData)
 
     return (
         <>

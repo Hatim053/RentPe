@@ -1,22 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 
-const initialState = null
+const initialState = {
+    loggedInUserData : {},
+    loggedInUserLocationData : 'bhopal',
+}
 
 export const userSlice = createSlice({
     name : 'loggedInUser',
     initialState,
     reducers : {
-        addUser : (state , action) => {
-            return action.payload
+        addLoggedInUser : (state , action) => {
+            // payload structure : {loggedInUser data object}
+        const loggedInUserObj = action.payload;
+        state.loggedInUserData = loggedInUserObj;
         },
-        removeUser : (state , action) => {
-           return null
-        }
+        addLocation : (state , action) => {
+            // payload structure : string
+            const loggedInUserLocation = action.payload;
+            state.loggedInUserLocationData = loggedInUserLocation;
+        },
     }
 })
 
 
-export const { addUser , removeUser } = userSlice.actions
+export const { addLoggedInUser , addLocation } = userSlice.actions
 export default userSlice.reducer
 

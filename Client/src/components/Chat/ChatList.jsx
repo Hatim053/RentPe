@@ -7,7 +7,7 @@ import ChatListItem from "./ChatListItem.jsx"
 function ChatList({ setUpdate , update }) {
 
 const [chatList , setChatList] = useState([])
-const loggedInUser = useSelector(state => state.loggedInUser)
+const loggedInUser = useSelector(state => state.loggedInUser.loggedInUserData)
 const loggedInUserType = loggedInUser?.accountType
 const loggedInUserId = loggedInUser._id
 

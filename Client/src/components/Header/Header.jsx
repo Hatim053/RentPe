@@ -8,7 +8,7 @@ import SearchBar from '../SearchBar/SearchBar.jsx'
 
 function Header() {
 
-    const loggedInUser = useSelector(state => state.loggedInUser);
+    const loggedInUser = useSelector(state => state.loggedInUser.loggedInUserData);
     const navigate = useNavigate();
 
     return (

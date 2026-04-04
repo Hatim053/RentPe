@@ -10,16 +10,16 @@ import socket from '../../socket.js'
 
 function ChatFeed() {
 const[update , setUpdate] = useState(false)
-const user = useSelector(state => state?.loggedInUser)
+const loggedInUser = useSelector(state => state?.loggedInUser.loggedInUserData)
 const navigate = useNavigate()
 
 useEffect(() => {
-    if (!user) {
+    if (!loggedInUser) {
         navigate('/user-login')
         return
     }
-    if (user?._id) socket.emit('registerUser', user._id) // emmiting event to backend after user/seller login so that we can store their socketId's
-  }, [user])
+    if (loggedInUser?._id) socket.emit('registerUser', loggedInUser._id) // emmiting event to backend after user/seller login so that we can store their socketId's
+  }, [loggedInUser])
 
 return (
     <>

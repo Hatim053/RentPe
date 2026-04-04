@@ -2,6 +2,7 @@ import styles from "../../styles/sidebar.module.css"
 import { FaHome, FaUserCircle, FaMoneyCheckAlt, FaHistory, FaSignOutAlt , FaBullhorn } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
+import { addLoggedInUserAd } from '../../ReduxStore/adSlice.js'
 
 
 const Sidebar = ({ activeMenu, setActiveMenu , loggedInUser}) => {
@@ -16,7 +17,7 @@ const Sidebar = ({ activeMenu, setActiveMenu , loggedInUser}) => {
       credentials : 'include',
     })
     .then((res) => res.json())
-    .then((data) => dispatch(addSearchedAds(data.myadvertisements)))
+    .then((data) => dispatch(addLoggedInUserAd(data.myadvertisements)))
   }
     setActiveMenu(menu)
     navigate(route)

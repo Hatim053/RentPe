@@ -7,16 +7,23 @@ import Pagination from '../components/Pagination/Pagination.jsx'
 import SearchSuggestions from '../components/SearchSuggestions/SearchSuggestions.jsx'
 import { useDispatch, useSelector } from 'react-redux'
 import { getRecentAdvertisements } from '../utitlies/utilities.js'
-import { addRecentAdsData } from '../ReduxStore/recentAdsSlice.js'
+import { addAdsArrayByPage } from '../ReduxStore/adSlice.js'
 
 function Home() {
 
- const recentsFeaturedAds = useSelector(state => state.recentAds);
+ const homePageAdDataMap = useSelector(state => state.advertisement.homePageAdDataMap);
  const page = useSelector(state => state.pagination.page);
  const dispatch = useDispatch(); 
 
 useEffect(() => {
-  getRecentAdvertisements(recentsFeaturedAds , addRecentAdsData , dispatch , page)
+     if(Object.keys(homePageAdDataMap).length == 0) { // on the initial render fetching data
+       getRecentAdvertisements(homePageAdDataMap , addAdsArrayByPage  , dispatch , page);
+       return;
+     }
+  if(!homePageAdDataMap[page]) {// after initial render checking if the data already catched or not
+   getRecentAdvertisements(homePageAdDataMap , addAdsArrayByPage  , dispatch , page);
+   return;
+  } 
 } , [page])
 
 
@@ -25,7 +32,7 @@ useEffect(() => {
   <Header />
   <SearchSuggestions />
   <Banner />
-  <Feed Ads = {recentsFeaturedAds}/>
+  <Feed Ads = {homePageAdDataMap[page]}/>
   <Pagination />
   <Footer />
     </>

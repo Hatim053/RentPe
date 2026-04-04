@@ -3,7 +3,7 @@ import styles from '../../styles/advertisementCard.module.css'
 import { handleDescription } from '../../utitlies/utilities.js'
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
-import { addAd } from '../../ReduxStore/selectedAdSlice.js'
+import { addDataById } from '../../ReduxStore/adSlice.js'
 
 function AdvertisementCard({ ad }) {
     const navigate = useNavigate()
@@ -11,8 +11,8 @@ function AdvertisementCard({ ad }) {
    
     return (
         <>
-          <div className = {styles.advertisement} onClick = {() => {
-            handleDescription(ad , dispatch , navigate , addAd);
+          <div key={ad.id} className = {styles.advertisement} onClick = {() => {
+            handleDescription(ad , dispatch , navigate , addDataById);
           }}>
             <div className = {styles.img}>
                 <img src={ad.images[0]} alt="" />

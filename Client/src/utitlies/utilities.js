@@ -4,7 +4,8 @@ import img3 from '../assets/bannerImage3.jpg'
 import img4 from '../assets/bannerImage4.jpg'
 import img5 from '../assets/bannerImage5.jpg'
 import img6 from '../assets/bannerImage6.jpg'
-import { isNextPageAvailable } from '../ReduxStore/paginationSlice'
+import { isNextPageAvailable } from '../ReduxStore/paginationSlice';
+import { updateToInitialPage } from '../ReduxStore/paginationSlice.js'
 
 const imgData = [
     {
@@ -97,7 +98,7 @@ async function getRecentAdvertisements(recentsFeaturedAds , addRecentAdsData , d
   try {
     const limit = 12;
       const response = await fetchData(`${import.meta.env.VITE_SERVER_SIDE_URL}/ad/recentAds/${(page - 1) * limit}/${limit + 1}`);
-      recentsFeaturedAds ? dispatch(addRecentAdsData([...recentsFeaturedAds, ...response])) : dispatch(addRecentAdsData(response));
+       dispatch(addRecentAdsData({page : page ,advertisementArray : response }));
       if(response.length < limit) dispatch(isNextPageAvailable(false));
   } catch (error) {
     console.log('could not fetch advertisement' , error);
@@ -110,9 +111,11 @@ async function getRecentAdvertisements(recentsFeaturedAds , addRecentAdsData , d
       const response = await fetchData(`${import.meta.env.VITE_SERVER_SIDE_URL}/ad/${serviceType}/${location}/${(page - 1) * limit}/${limit + 1}`)
       console.log('searched ', response)
       if(searchedAds && searchedAds[0].city.toLowerCase()==location.toLowerCase()) {
-        dispatch(addSearchedAdsData([...response , ...searchedAds]));
-      }
-     dispatch(addSearchedAdsData(response));
+        dispatch(addSearchedAdsData({page:page , advertisementArray : response}));
+        return;
+      }  
+          dispatch(updateToInitialPage());
+         dispatch(addSearchedAdsData({page:1 , advertisementArray : response}));
       if (response.length < limit) dispatch(isNextPageAvailable(false));
     } catch (error) {
       console.log('could not fetch advertisements', error)
@@ -166,7 +169,7 @@ async function handleDeleteAd(ad , navigate) {
 
   function handleDescription(advertisement , dispatch , navigate , addAd) {
     dispatch(addAd(advertisement))
-    navigate('/adDescription')
+    navigate(`/adDescription/${advertisement?._id}`);
     }
 
 export {

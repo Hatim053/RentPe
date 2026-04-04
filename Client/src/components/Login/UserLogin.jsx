@@ -2,7 +2,7 @@ import React, { useRef, useEffect, } from "react"
 import styles from "../../styles/userLogin.module.css"
 import { useDispatch, } from 'react-redux'
 import { useNavigate } from "react-router-dom"
-import { addUser } from '../../ReduxStore/userSlice.js'
+import { addLoggedInUser } from '../../ReduxStore/userSlice.js'
 import useLogin from '../../hooks/useLogin.js'
 
 function UserLogin() {
@@ -35,7 +35,7 @@ function UserLogin() {
   useEffect(() => {
     if (!response) return;
     if (response.status === 201) {
-      dispatch(addUser(response.user));
+      dispatch(addLoggedInUser(response.user));
       navigate('/');
     }
     if (response.status === 401) redirectSignup();
